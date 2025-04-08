@@ -27,7 +27,7 @@
       "Riggors":[],
       "Oarlocks":[],
       "Shoes":[],
-      "Footstretcher":[],
+      "Footstretchers":[],
       "Tracks":[],
       "Seats":[]
     },
@@ -35,7 +35,7 @@
     "Coxswain":{
       "Lights":[],
       "SpeedCoach":[],
-      "Cox Boxes":[]
+      "CoxBox":[]
     },
 
     "Maintenence":{
@@ -44,22 +44,20 @@
           "Bolts":[],
           "Washers":[],
           "Nuts":[],
-          "Lock Washers":[]
+          "LockWashers":[],
+          "Screws":[],
+          "wrenches":[]
         },
         "7/16": {
           "Bolts":[],
           "Washers":[],
           "Nuts":[],
-          "Lock Washers":[]
+          "Lock Washers":[],
+          "Screws":[],
+          "wrenches":[]
         }
       },
-
-      "Wrenches":{
-        "10mm":[],
-        "7/16":[],
-        "Adjustable":[]
-      },
-
+      
       "Tapes":[]
     },
 
@@ -72,11 +70,12 @@
 
   },
 
-  "ergroom": {
+  "Ergroom": {
     "Bergs": [],
     "C2": [],
     "RP3": [],
     "Weights": {},
-    "bars": []
+    "Bars": [],
+    "Tablets": []
   }
 }
