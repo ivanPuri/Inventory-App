@@ -8,7 +8,7 @@ class Service {
 
   // Fetch the inventory data from the remote URL
   Future<void> fetchInventory() async {
-    final url = "https://raw.githubusercontent.com/ivanPuri/Inventory-App/main/inventory.json";
+    final url = "https://raw.githubusercontent.com/ivanPuri/Inventory-App/refs/heads/main/inventory/assets/inventory.json";
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
@@ -99,7 +99,7 @@ class Service {
   List<dynamic> getCox() {
     List<dynamic> allCox = [];
     final cox = _boathouse?['Coxswain']?['Lights'] ?? [];
-    final coxBoxes = _boathouse?['Coxswain']?['Cox Boxes'] ?? [];
+    final coxBoxes = _boathouse?['Coxswain']?['CoxBox'] ?? [];
     final speedcoach = _boathouse?['Coxswain']?['SpeedCoach'] ?? [];
 
     allCox.addAll(cox);

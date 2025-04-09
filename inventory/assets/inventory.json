@@ -3,7 +3,7 @@
     "Boats":{
 
       "Mens":{
-        "Eights":[],
+        "Eights":["empacher","King","Queen","2V","Salk","KP"],
         "Fours":[],
         "SmallBoats":[],
         "Singles":[]
@@ -38,7 +38,7 @@
       "CoxBox":[]
     },
 
-    "Maintenence":{
+    "Maintanance":{
       "Hardware":{
         "10mm":{
           "Bolts":[],
@@ -46,15 +46,15 @@
           "Nuts":[],
           "LockWashers":[],
           "Screws":[],
-          "wrenches":[]
+          "Wrenches":[]
         },
         "7/16": {
           "Bolts":[],
           "Washers":[],
           "Nuts":[],
-          "Lock Washers":[],
+          "LockWashers":[],
           "Screws":[],
-          "wrenches":[]
+          "Wrenches":[]
         }
       },
       
@@ -62,7 +62,7 @@
     },
 
     "Storage/Transport":{
-      "BoatBag":{},
+      "BoatBag":[],
       "BoatCovers":[],
       "Slings":[],
       "Straps":[]
@@ -74,7 +74,7 @@
     "Bergs": [],
     "C2": [],
     "RP3": [],
-    "Weights": {},
+    "Weights": [],
     "Bars": [],
     "Tablets": []
   }
