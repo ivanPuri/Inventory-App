@@ -10,7 +10,6 @@ class Service {
   Future<void> fetchInventory() async {
     final url = "https://raw.githubusercontent.com/ivanPuri/Inventory-App/refs/heads/main/inventory/assets/inventory.json";
     final response = await http.get(Uri.parse(url));
-
     if (response.statusCode == 200) {
       _inventory = json.decode(response.body);
       _boathouse = _inventory?['Boathouse'];

@@ -3,79 +3,193 @@
     "Boats":{
 
       "Mens":{
-        "Eights":["empacher","King","Queen","2V","Salk","KP"],
-        "Fours":[],
-        "SmallBoats":[],
-        "Singles":[]
-      },
+        "Eights":[
+            {
+            "name":"Salk",
+            "pairing":"1"
+            }
+        ],
+        "Fours":[
+          {
+            "name": "Spirit of the Allegheny",
+            "pairing":"1"
+          }
+        ],
+        "SmallBoats":[
+          {
+            "name": "ECB",
+            "pairing":"1"
+          }
+        ],
+        "Singles":[
+          {
+            "name":"ape",
+            "pairing":"1"
+          }
+        ]
+        },
 
       "Womens":{
-        "Eights":[],
-        "Fours":[],
-        "SmallBoats":[],
-        "Singles":[]
+        "Eights":[
+          {
+            "name":"King",
+            "pairing":"1"
+          }
+        ],
+        "Fours":[
+          {
+            "name":"Monami",
+            "pairing":"1"
+          }
+        ],
+        "SmallBoats":[
+          {
+            "name":"Huff",
+            "pairing":"1"
+          }
+        ],
+        "Singles":[
+          {
+            "name":"Red single",
+            "pairing":"1"
+          }
+        ]
       } 
 
     },
 
     "Oars":{
-      "Sweeping":[],
-      "Sculling":[]
+      "Sweeping":[
+        {
+          "name":"Orange Handles"
+        }
+      ],
+      "Sculling":[
+        {
+        "name":"Blue Handles"
+        }
+      ]
     },
 
     "Rigging":{
-      "Riggors":[],
-      "Oarlocks":[],
-      "Shoes":[],
-      "Footstretchers":[],
-      "Tracks":[],
-      "Seats":[]
+      "Riggors":[
+        {
+          "name":"Black Riggors"
+        }
+      ],
+      "Oarlocks":[{
+        "name":"Black Riggors"
+      }],
+      "Shoes":[{
+        "name":"Black Riggors"
+      }],
+      "Footstretchers":[{
+        "name":"Black Riggors"
+      }],
+      "Tracks":[{
+        "name":"Black Riggors"
+      }],
+      "Seats":[{
+        "name":"Black Riggors"
+      }]
     },
 
     "Coxswain":{
-      "Lights":[],
-      "SpeedCoach":[],
-      "CoxBox":[]
+      "Lights":[{
+        "name":"Black Riggors"
+      }],
+      "SpeedCoach":[{
+        "name":"Black Riggors"
+      }],
+      "CoxBox":[{
+        "name":"Black Riggors"
+      }]
     },
 
     "Maintanance":{
       "Hardware":{
         "10mm":{
-          "Bolts":[],
-          "Washers":[],
-          "Nuts":[],
-          "LockWashers":[],
-          "Screws":[],
-          "Wrenches":[]
+          "Bolts":[{
+            "name":"Black Riggors"
+          }],
+          "Washers":[{
+            "name":"Black Riggors"
+          }],
+          "Nuts":[{
+            "name":"Black Riggors"
+          }],
+          "LockWashers":[{
+            "name":"Black Riggors"
+          }],
+          "Screws":[{
+            "name":"Black Riggors"
+          }],
+          "Wrenches":[{
+            "name":"Black Riggors"
+          }]
         },
         "7/16": {
-          "Bolts":[],
-          "Washers":[],
-          "Nuts":[],
-          "LockWashers":[],
-          "Screws":[],
-          "Wrenches":[]
+          "Bolts":[{
+            "name":"Black Riggors"
+          }],
+          "Washers":[{
+            "name":"Black Riggors"
+          }],
+          "Nuts":[{
+            "name":"Black Riggors"
+          }],
+          "LockWashers":[{
+            "name":"Black Riggors"
+          }],
+          "Screws":[{
+            "name":"Black Riggors"
+          }],
+          "Wrenches":[{
+            "name":"Black Riggors"
+          }]
         }
       },
       
-      "Tapes":[]
+      "Tapes":[{
+        "name":"Black Riggors"
+      }]
     },
 
     "Storage/Transport":{
-      "BoatBag":[],
-      "BoatCovers":[],
-      "Slings":[],
-      "Straps":[]
+      "BoatBag":[{
+        "name":"Black Riggors"
+      }],
+      "BoatCovers":[{
+        "name":"Black Riggors"
+      }],
+      "Slings":[{
+        "name":"Black Riggors"
+      }],
+      "Straps":[{
+        "name":"Black Riggors"
+      }]
     }
 
   },
 
   "Ergroom": {
-    "Bergs": [],
-    "C2": [],
-    "RP3": [],
-    "Weights": [],
-    "Bars": [],
-    "Tablets": []
+    "Bergs": [{
+      "name":"Black Riggors"
+    }],
+    "C2": [{
+      "name":"Black Riggors"
+    }],
+    "RP3": [{
+      "name":"Black Riggors"
+    }],
+    "Weights": [{
+      "name":"Black Riggors"
+    }],
+    "Bars": [{
+      "name":"Black Riggors"
+    }],
+    "Tablets": [{
+      "name":"Black Riggors"
+    }]
   }
 }

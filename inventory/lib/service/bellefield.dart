@@ -39,8 +39,8 @@ class _BoatsState extends State<Boats> {
                 return Card(
                   margin: EdgeInsets.all(10),
                   child: ListTile(
-                    title: Text(boat['name'] ?? 'Unnamed Boat'),
-                    subtitle: Text(boat['condition'] ?? 'No condition info'),
+                    title: Text(boat[0] ?? 'Unnamed Boat'),
+                    subtitle: Text(boat[0] ?? 'No condition info'),
                   ),
                 );
               },
