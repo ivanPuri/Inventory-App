@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:inventory/service/bellefield.dart';
 
-class Bellefield extends StatelessWidget {
+class Boathouse extends StatelessWidget {
 
-  const Bellefield({super.key});
+  const Boathouse({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class Bellefield extends StatelessWidget {
       crossAxisSpacing: 10,
       mainAxisSpacing: 10,
       children: [
-        _buildGridItem(context, 'Boats', Placeholder()),
+        _buildGridItem(context, 'Boats', Boats()),
         _buildGridItem(context, 'Oars/Sculls', Placeholder()),
         _buildGridItem(context, 'Rigging', Placeholder()), 
         _buildGridItem(context, 'Maintenance', Placeholder()),
@@ -48,8 +49,8 @@ class Bellefield extends StatelessWidget {
   }
 }
 
-class Boathouse extends StatelessWidget {
-  const Boathouse({super.key});
+class Bellefield extends StatelessWidget {
+  const Bellefield({super.key});
 
   @override
   Widget build(BuildContext context) {

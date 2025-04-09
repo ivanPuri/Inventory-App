@@ -52,9 +52,9 @@ class _HomepageState extends State<Homepage> {
   }
 
   final List<Widget> _pages = [
-    Bellefield(),//replace this with the eventual bellefield page
+    Boathouse(),//replace this with the eventual bellefield page
     Center(child: Text('Search Page')),//replace this with the eventual search page
-    Boathouse(),//replace this with the eventual boat house page
+    Bellefield(),//replace this with the eventual boat house page
   ];
 
   void _onItemTapped(int index) {
@@ -90,16 +90,16 @@ class _HomepageState extends State<Homepage> {
         onTap: _onItemTapped,  // Call the function when a tab is tapped
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Bellefield',
+            icon: Icon(Icons.rowing),
+            label: 'Boat House',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.rowing),
-            label: 'Boat House',
+            icon: Icon(Icons.home),
+            label: 'Bellefield',
           ),
         ],
       ),
