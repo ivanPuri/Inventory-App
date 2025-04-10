@@ -3,22 +3,25 @@
     "Boats":{
 
       "Mens":{
+
         "Eights":[
             {
             "name":"Salk",
-            "pairing":"1"
+            "pairing":"Salk",
+            "Wrench-Size":"7/16",
+            "Brand":"Vespoli"
             }
         ],
         "Fours":[
           {
             "name": "Spirit of the Allegheny",
-            "pairing":"1"
+            "pairing":"2"
           }
         ],
         "SmallBoats":[
           {
-            "name": "ECB",
-            "pairing":"1"
+            "name": "Elizabeth Cecilia Bergen",
+            "pairing":"3"
           }
         ],
         "Singles":[
@@ -59,50 +62,73 @@
     },
 
     "Oars":{
-      "Sweeping":[
-        {
+      "Sweeping": {
+        "Mens": [
+          {
           "name":"Orange Handles"
         }
       ],
+        "Womens": [
+          {
+          "name":"Pink Handles"
+        }
+      ]
+      },
+        
       "Sculling":[
         {
         "name":"Blue Handles"
         }
       ]
+
     },
 
     "Rigging":{
       "Riggors":[
         {
-          "name":"Black Riggors"
+          "name":"Black Riggers",
+          "pairing":"Salk"
         }
       ],
       "Oarlocks":[{
-        "name":"Black Riggors"
+        "Name":"Black Riggors",
+        "count": 8
+
       }],
       "Shoes":[{
-        "name":"Black Riggors"
+        "Brand":"Vespoli",
+        "Count": 8
       }],
       "Footstretchers":[{
-        "name":"Black Riggors"
+        "Brand":"Vespoli",
+        "Count": 8
       }],
       "Tracks":[{
-        "name":"Black Riggors"
+        "Brand":"Vespoli",
+        "Count": 8
       }],
       "Seats":[{
-        "name":"Black Riggors"
+        "Brand":"Vespoli",
+        "Count": 8
       }]
     },
 
     "Coxswain":{
       "Lights":[{
-        "name":"Black Riggors"
+        "SternCount":1
+      },
+      {
+        "BowCount":1
       }],
       "SpeedCoach":[{
-        "name":"Black Riggors"
+        "count": 4
       }],
       "CoxBox":[{
-        "name":"Black Riggors"
+        "count": 3
+      }],
+      "Headsets":[{
+        "count": 1
+
       }]
     },
 
@@ -110,63 +136,58 @@
       "Hardware":{
         "10mm":{
           "Bolts":[{
-            "name":"Black Riggors"
+            "count": 3
           }],
           "Washers":[{
-            "name":"Black Riggors"
+            "count": 3
           }],
           "Nuts":[{
-            "name":"Black Riggors"
+            "count": 3
           }],
           "LockWashers":[{
-            "name":"Black Riggors"
+            "count": 3
           }],
           "Screws":[{
-            "name":"Black Riggors"
+            "count": 3
           }],
           "Wrenches":[{
-            "name":"Black Riggors"
+            "count": 3
           }]
         },
         "7/16": {
           "Bolts":[{
-            "name":"Black Riggors"
+            "count": 3
           }],
           "Washers":[{
-            "name":"Black Riggors"
+            "count": 3
           }],
           "Nuts":[{
-            "name":"Black Riggors"
+            "count": 3
           }],
           "LockWashers":[{
-            "name":"Black Riggors"
+            "count": 3
           }],
           "Screws":[{
-            "name":"Black Riggors"
+            "count": 3
           }],
           "Wrenches":[{
-            "name":"Black Riggors"
+            "count": 3
           }]
         }
-      },
+      }
       
-      "Tapes":[{
-        "name":"Black Riggors"
-      }]
+     
     },
 
     "Storage/Transport":{
-      "BoatBag":[{
-        "name":"Black Riggors"
-      }],
       "BoatCovers":[{
-        "name":"Black Riggors"
+        "Pairing": "Prince"
       }],
       "Slings":[{
-        "name":"Black Riggors"
+        "count": 3
       }],
       "Straps":[{
-        "name":"Black Riggors"
+        "count": 3
       }]
     }
 
@@ -174,13 +195,13 @@
 
   "Ergroom": {
     "Bergs": [{
-      "name":"Black Riggors"
+      "count": 3
     }],
     "C2": [{
-      "name":"Black Riggors"
+      "count ": 3
     }],
     "RP3": [{
-      "name":"Black Riggors"
+      "count ": 3
     }],
     "Weights": [{
       "name":"Black Riggors"
@@ -189,7 +210,7 @@
       "name":"Black Riggors"
     }],
     "Tablets": [{
-      "name":"Black Riggors"
+      "count": 5
     }]
   }
 }

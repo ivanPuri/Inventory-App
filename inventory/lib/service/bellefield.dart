@@ -38,9 +38,10 @@ class _BoatsState extends State<Boats> {
                 final boat = _boats[index];
                 return Card(
                   margin: EdgeInsets.all(10),
+                  
                   child: ListTile(
-                    title: Text(boat[0] ?? 'Unnamed Boat'),
-                    subtitle: Text(boat[0] ?? 'No condition info'),
+                    title: Text("${ boat["name"] ?? 'Null Name' }"),
+                    subtitle: Text("Pair: ${boat["pairing"] ?? 'Null Pairing'}"),
                   ),
                 );
               },
