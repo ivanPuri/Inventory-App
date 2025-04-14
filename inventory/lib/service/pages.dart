@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inventory/service/bellefield.dart';
+import 'package:inventory/service/BoatHouse.dart';
 
 class Boathouse extends StatelessWidget {
 
@@ -13,7 +13,7 @@ class Boathouse extends StatelessWidget {
       crossAxisSpacing: 10,
       mainAxisSpacing: 10,
       children: [
-        _buildGridItem(context, 'Boats', Placeholder()),
+        _buildGridItem(context, 'Boats', Boats()),
         _buildGridItem(context, 'Oars/Sculls', Placeholder()),
         _buildGridItem(context, 'Rigging', Placeholder()), 
         _buildGridItem(context, 'Maintenance', Placeholder()),

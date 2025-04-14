@@ -7,7 +7,7 @@
             {
             "name":"Jonas Salk",
             "pairing":"Salk",
-            "Wrench-Size":"7/16",
+            "Wrench-Size":"7/16in",
             "Brand":"Vespoli"
             },
             {
@@ -27,13 +27,13 @@
           {
             "name":"SGB",
             "pairing":"SGB",
-            "Wrench-Size":"7/16",
+            "Wrench-Size":"7/16in",
             "Brand":"Vespoli"
           },
           {
             "name":"Spirit of the Allegheny",
             "pairing":"Spirit",
-            "Wrench-Size":"7/16",
+            "Wrench-Size":"7/16in",
             "Brand":"Vespoli"
           },
           {
@@ -69,13 +69,13 @@
           {
             "name":"Monami",
             "pairing":"Monami",
-            "Wrench-Size":"7/16",
+            "Wrench-Size":"7/16in",
             "Brand":"Vespoli"
           },
           {
             "name":"Jimmy & Merry",
             "pairing":"JM",
-            "Wrench-Size":"7/16",
+            "Wrench-Size":"7/16in",
             "Brand":"Vespoli"
           },
           {
@@ -87,7 +87,7 @@
           {
             "name":"Happy Mercy",
             "pairing":"HM",
-            "Wrench-Size":"7/16",
+            "Wrench-Size":"7/16in",
             "Brand":"Vespoli"
           }
         ]},
@@ -97,7 +97,7 @@
           {
             "name":"White Single",
             "pairing":"whiteSingle",
-            "Wrench-Size":"7/16",
+            "Wrench-Size":"7/16in",
             "Brand":"Vespoli"
           }
         ],
@@ -112,13 +112,13 @@
           {
             "name":"Eric and Lee",
             "pairing":"E&L",
-            "Wrench-Size":"7/16",
+            "Wrench-Size":"7/16in",
             "Brand":"Wintech"
           },
           {
             "name":"Quick Slide",
             "pairing":"QuickSlide",
-            "Wrench-Size":"7/16",
+            "Wrench-Size":"7/16in",
             "Brand":"Wintech"
           },
           {
@@ -130,19 +130,19 @@
           {
             "name":"Kathleen M. Kowalski",
             "pairing":"Red",
-            "Wrench-Size":"7/16",
+            "Wrench-Size":"7/16in",
             "Brand":"Vespoli"
           },
           {
             "name":"Yellow Double",
             "pairing":"YellowDouble",
-            "Wrench-Size":"7/16",
+            "Wrench-Size":"7/16in",
             "Brand":"Kaschper"
           },
           {
             "name":"Leslie Hammond",
             "pairing":"Hammond",
-            "Wrench-Size":"7/16",
+            "Wrench-Size":"7/16in",
             "Brand":"Vespoli"
           }
         ]
