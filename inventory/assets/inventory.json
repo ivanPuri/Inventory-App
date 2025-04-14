@@ -3,61 +3,150 @@
     "Boats":{
 
       "Mens":{
-
         "Eights":[
             {
-            "name":"Salk",
+            "name":"Jonas Salk",
             "pairing":"Salk",
             "Wrench-Size":"7/16",
             "Brand":"Vespoli"
+            },
+            {
+              "name":"Queen",
+              "pairing":"Queen",
+              "Wrench-Size":"10mm",
+              "Brand":"Wintech"
+            },
+            {
+              "name":"Halve Maen",
+              "pairing":"Havle Maen",
+              "Wrench-Size":"10mm",
+              "Brand":"Empocher"
             }
         ],
         "Fours":[
           {
-            "name": "Spirit of the Allegheny",
-            "pairing":"2"
-          }
-        ],
-        "SmallBoats":[
+            "name":"SGB",
+            "pairing":"SGB",
+            "Wrench-Size":"7/16",
+            "Brand":"Vespoli"
+          },
           {
-            "name": "Elizabeth Cecilia Bergen",
-            "pairing":"3"
-          }
-        ],
-        "Singles":[
+            "name":"Spirit of the Allegheny",
+            "pairing":"Spirit",
+            "Wrench-Size":"7/16",
+            "Brand":"Vespoli"
+          },
           {
-            "name":"ape",
-            "pairing":"1"
+            "name":"Prince",
+            "pairing":"Prince",
+            "Wrench-Size":"10mm",
+            "Brand":"King"
           }
-        ]
-        },
+        ]},
 
       "Womens":{
         "Eights":[
           {
             "name":"King",
-            "pairing":"1"
+            "pairing":"King",
+            "Wrench-Size":"10mm",
+            "Brand":"King"
+          },
+          {
+            "name":"Karens Pride",
+            "pairing":"KP",
+            "Wrench-Size":"7/16",
+            "Brand":"Vespoli"
+          },
+          {
+            "name":"Veritas et virtus",
+            "pairing":"2V",
+            "Wrench-Size":"7/16",
+            "Brand":"Vespoli"
           }
         ],
         "Fours":[
           {
             "name":"Monami",
-            "pairing":"1"
-          }
-        ],
-        "SmallBoats":[
+            "pairing":"Monami",
+            "Wrench-Size":"7/16",
+            "Brand":"Vespoli"
+          },
           {
-            "name":"Huff",
-            "pairing":"1"
+            "name":"Jimmy & Merry",
+            "pairing":"JM",
+            "Wrench-Size":"7/16",
+            "Brand":"Vespoli"
+          },
+          {
+            "name":"Wintech 4",
+            "pairing":"wintech4",
+            "Wrench-Size":"10mm",
+            "Brand":"Wintech"
+          },
+          {
+            "name":"Happy Mercy",
+            "pairing":"HM",
+            "Wrench-Size":"7/16",
+            "Brand":"Vespoli"
           }
-        ],
+        ]},
+        
+      "Smallboats":{
         "Singles":[
           {
-            "name":"Red single",
-            "pairing":"1"
+            "name":"White Single",
+            "pairing":"whiteSingle",
+            "Wrench-Size":"7/16",
+            "Brand":"Vespoli"
+          }
+        ],
+        
+        "Doubles":[
+          {
+            "name":"Matt Huff",
+            "pairing":"Huff",
+            "Wrench-Size":"10mm",
+            "Brand":"Wintech"
+          },
+          {
+            "name":"Eric and Lee",
+            "pairing":"E&L",
+            "Wrench-Size":"7/16",
+            "Brand":"Wintech"
+          },
+          {
+            "name":"Quick Slide",
+            "pairing":"QuickSlide",
+            "Wrench-Size":"7/16",
+            "Brand":"Wintech"
+          },
+          {
+            "name":"Elizabeth Cecilia Bergen",
+            "pairing":"ECB",
+            "Wrench-Size":"10mm",
+            "Brand":"Wintech"
+          },
+          {
+            "name":"Kathleen M. Kowalski",
+            "pairing":"Red",
+            "Wrench-Size":"7/16",
+            "Brand":"Vespoli"
+          },
+          {
+            "name":"Yellow Double",
+            "pairing":"YellowDouble",
+            "Wrench-Size":"7/16",
+            "Brand":"Kaschper"
+          },
+          {
+            "name":"Leslie Hammond",
+            "pairing":"Hammond",
+            "Wrench-Size":"7/16",
+            "Brand":"Vespoli"
           }
         ]
-      } 
+      }
 
     },
 
@@ -65,19 +154,39 @@
       "Sweeping": {
         "Mens": [
           {
-          "name":"Orange Handles"
-        }
+          "name":"Orange Skinnies"
+          },
+          {
+            "name":"Green Grandles"
+          },
+          {
+            "name":"Croackers"
+          }
       ],
         "Womens": [
           {
-          "name":"Pink Handles"
-        }
+          "name":"Blue Grandles"
+          },
+          {
+            "name":"Black Handles"
+          },
+          {
+            "name":"Wooden Skinnies"
+          },
+          {
+            "name":"Green Skinnies"
+          }
       ]
       },
         
       "Sculling":[
         {
-        "name":"Blue Handles"
+        "name":"White Blade",
+        "SetCount": 5
+        },
+        {
+          "name":"Yellow Blade",
+          "SetCount": 2
         }
       ]
 
@@ -86,8 +195,48 @@
     "Rigging":{
       "Riggors":[
         {
-          "name":"Black Riggers",
+          "Label":"Dark Green Zip-Tie",
           "pairing":"Salk"
+        },
+        {
+          "Label":"Purple Zip-Tie",
+          "pairing":"Queen"
+        },
+        {
+          "Label":"Light Purple + ArmyGreen Zip-Tie",
+          "pairing":"SGB"
+        },
+        {
+          "Label":"Dark Blue Zip-Tie",
+          "pairing":"Spirit"
+        },
+        {
+          "Label":"Carbon Fiber",
+          "pairing":"Prince"
+        },
+        {
+          "Label":"Dark Red Zip-Tie",
+          "pairing":"King"
+        },
+        {
+          "Label":"Red + Yellow Zip-Tie",
+          "pairing":"JM"
+        },
+        {
+          "Label":"Light Blue + Green Zip-Tie",
+          "pairing":"2V"
+        },
+        {
+          "Label":"Red + Purple Zip-Tie",
+          "pairing":"Wintech4"
+        },
+        {
+          "Label":"Black + Green Zip-Tie",
+          "pairing":"KP"
+        },
+        {
+          "Label":"Grey + Lime Zip-Tie",
+          "pairing":"Monami"
         }
       ],
       "Oarlocks":[{
@@ -97,37 +246,42 @@
       }],
       "Shoes":[{
         "Brand":"Vespoli",
-        "Count": 8
+        "Count": 18
       }],
       "Footstretchers":[{
         "Brand":"Vespoli",
-        "Count": 8
+        "Count": 2
       }],
       "Tracks":[{
+        "Brand":"Wintech",
+        "Pair Count": 4
+      },
+      {
         "Brand":"Vespoli",
-        "Count": 8
+        "Pair Count": 7
       }],
       "Seats":[{
         "Brand":"Vespoli",
-        "Count": 8
+        "Count": 10
       }]
     },
 
     "Coxswain":{
-      "Lights":[{
-        "SternCount":1
-      },
-      {
-        "BowCount":1
-      }],
+      "Lights":[
+        {
+        "SternCount":12
+        },
+        {
+          "BowCount":19
+  }],
       "SpeedCoach":[{
-        "count": 4
+        "count": 6
       }],
       "CoxBox":[{
-        "count": 3
+        "count": 11
       }],
       "Headsets":[{
-        "count": 1
+        "count": 11
 
       }]
     },
@@ -135,41 +289,11 @@
     "Maintanance":{
       "Hardware":{
         "10mm":{
-          "Bolts":[{
-            "count": 3
-          }],
-          "Washers":[{
-            "count": 3
-          }],
-          "Nuts":[{
-            "count": 3
-          }],
-          "LockWashers":[{
-            "count": 3
-          }],
-          "Screws":[{
-            "count": 3
-          }],
           "Wrenches":[{
             "count": 3
           }]
         },
         "7/16": {
-          "Bolts":[{
-            "count": 3
-          }],
-          "Washers":[{
-            "count": 3
-          }],
-          "Nuts":[{
-            "count": 3
-          }],
-          "LockWashers":[{
-            "count": 3
-          }],
-          "Screws":[{
-            "count": 3
-          }],
           "Wrenches":[{
             "count": 3
           }]
@@ -184,10 +308,13 @@
         "Pairing": "Prince"
       }],
       "Slings":[{
-        "count": 3
+        "count": 16
       }],
       "Straps":[{
-        "count": 3
+        "count": 31
+      }],
+      "LowBoys":[{
+        "SetCount": 4
       }]
     }
 
