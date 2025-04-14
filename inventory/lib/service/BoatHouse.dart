@@ -52,6 +52,13 @@ class _BoatsState extends State<Boats> {
                     return Card(
                       margin: EdgeInsets.all(10),
                       child: ListTile(
+                        leading: boat["Brand"] == "Vespoli" ? Image.asset("assets/vespoli.png")
+                        : boat["Brand"] == "King" ? Image.asset("assets/king.png")
+                        : boat["Brand"] == "Wintech" ? Image.asset("assets/wintech.png")
+                        : boat["Brand"] == "Empocher" ? Image.asset("assets/empocher.png")
+                        : boat["Brand"] == "Kaschper" ? Image.asset("assets/kaschper.png")
+                        : SizedBox(),
+
                         title: Text("${ boat["name"] ?? 'Null Name' }"),
                         subtitle: Text("Pair: ${boat["pairing"] ?? 'Null Pairing'}"),
                         trailing: Text(" ${boat["Wrench-Size"] ?? 'Null Price'}"),
