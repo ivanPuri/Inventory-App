@@ -31,7 +31,12 @@ class _BoatsState extends State<Boats> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Boats'),
+        title: Text('Boats',
+        style: TextStyle(color: Color(0xffFFB81C))),
+        backgroundColor: Color(0xff003594 ),
+        iconTheme: IconThemeData(
+          color: Color(0xffFFB81C),
+        ),
         actions: [
           IconButton(
             icon: Icon(_isList ? Icons.grid_view_outlined : Icons.list),
@@ -59,7 +64,6 @@ class _BoatsState extends State<Boats> {
                         : boat["Brand"] == "Empacher" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/empacher.png"))
                         : SizedBox(),
                         title: Text("${ boat["name"] ?? 'Null Name' }"),
-                        subtitle: Text("Pair: ${boat["pairing"] ?? 'Null Pairing'}"),
                         trailing: Text(" ${boat["Wrench-Size"] ?? 'Null Price'}"),
                       ),
                     );
