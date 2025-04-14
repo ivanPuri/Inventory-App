@@ -55,10 +55,9 @@ class _BoatsState extends State<Boats> {
                         leading: boat["Brand"] == "Vespoli" ? Image.asset("assets/vespoli.png")
                         : boat["Brand"] == "King" ? Image.asset("assets/king.png")
                         : boat["Brand"] == "Wintech" ? Image.asset("assets/wintech.png")
-                        : boat["Brand"] == "Empacher" ? Image.asset("assets/empacher.png")
                         : boat["Brand"] == "Kaschper" ? Image.asset("assets/kaschper.png")
+                        : boat["Brand"] == "Empacher" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/empacher.png"))
                         : SizedBox(),
-
                         title: Text("${ boat["name"] ?? 'Null Name' }"),
                         subtitle: Text("Pair: ${boat["pairing"] ?? 'Null Pairing'}"),
                         trailing: Text(" ${boat["Wrench-Size"] ?? 'Null Price'}"),
