@@ -69,6 +69,7 @@ class _BoatsState extends State<Boats> {
                     );
                   }
                 )
+                
                 // Grid View Needs Work
                 : GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -79,16 +80,32 @@ class _BoatsState extends State<Boats> {
                   itemBuilder: (context, index) {
                   final boat = _boats[index];
                   return Card(
-                    margin: EdgeInsets.all(6),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 30),
-                      child: Center(
-                        child: ListTile(
-                      title: Text("${ boat["name"] ?? 'Null Name' }")
-                    )
+                    margin: EdgeInsets.all(10),
+                    child: Center(
+                        child: Column(
+                          children: [
+                            SizedBox(height: 20),
+
+                            boat["Brand"] == "Vespoli" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/vespoli.png"))
+                          : boat["Brand"] == "King" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/king.png"))
+                          : boat["Brand"] == "Wintech" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/wintech.png"))
+                          : boat["Brand"] == "Kaschper" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/kascpher.png"))
+                          : boat["Brand"] == "Empacher" ? SizedBox(height: 90, width: 90, child: Image.asset("assets/empacher.png"))
+                          : SizedBox(),
+                          
+                          
+                            Text("${ boat["name"] ?? 'Null Name' }",
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                            Text(" ${boat["Wrench-Size"] ?? 'Null Price'}"
+                              , style: TextStyle(fontSize: 15)),
+                            
+                          ],
+                        
+
                       )
-                      
                     )
+                      
+                    
                     
                   );
                 }
