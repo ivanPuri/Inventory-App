@@ -13,6 +13,14 @@ class _BoatsState extends State<Boats> {
   final _service = Service();
   List<dynamic> _boats = [];
   bool _isList = true;
+  int _selectedIndex = 0;
+
+
+  final List<Widget> _pages = [
+    Placeholder(),//replace this with the eventual bellefield page
+    Center(child: Text('Search Page')),//replace this with the eventual search page
+    Placeholder(),//replace this with the eventual boat house page
+  ];
 
    @override
   void initState() {
@@ -27,6 +35,11 @@ class _BoatsState extends State<Boats> {
     });
   }
 
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index; 
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,10 +59,29 @@ class _BoatsState extends State<Boats> {
               });
             },
           ),
-        ],),
+        ]), 
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,  // Bind the selected index
+        onTap: _onItemTapped,  // Call the function when a tab is tapped
+        items:  const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.man),
+            label: 'Mens',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.elderly_woman),
+            label: 'Womens',
+          ),
+        ],
+        ),
       body: _boats.isEmpty 
             ? Center(child: CircularProgressIndicator()) 
             : _isList ? 
+                // List View
                ListView.builder(
                   itemCount: _boats.length,
                   itemBuilder: (context, index) {
@@ -95,7 +127,7 @@ class _BoatsState extends State<Boats> {
                           
                           
                             Text("${ boat["name"] ?? 'Null Name' }",
-                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                             Text(" ${boat["Wrench-Size"] ?? 'Null Price'}"
                               , style: TextStyle(fontSize: 15)),
                             
