@@ -69,6 +69,7 @@ flutter:
     - assets/king.png
     - assets/wintech.png
     - assets/empacher.png
+    - assets/kaschper.jpeg
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -25,20 +25,22 @@ class Service {
     List<dynamic> allBoats = [];
     final mensBoats = _boathouse?['Boats']?['Mens'];
     final womensBoats = _boathouse?['Boats']?['Womens'];
+    final smallBoats = _boathouse?["Boats"]?["Smallboats"];
 
     // Check for null before adding
     if (mensBoats != null) {
       allBoats.addAll(mensBoats['Eights'] ?? []);
       allBoats.addAll(mensBoats['Fours'] ?? []);
-      allBoats.addAll(mensBoats['SmallBoats'] ?? []);
-      allBoats.addAll(mensBoats['Singles'] ?? []);
     }
 
     if (womensBoats != null) {
       allBoats.addAll(womensBoats['Eights'] ?? []);
       allBoats.addAll(womensBoats['Fours'] ?? []);
-      allBoats.addAll(womensBoats['SmallBoats'] ?? []);
-      allBoats.addAll(womensBoats['Singles'] ?? []);
+    }
+
+    if (smallBoats != null) {
+      allBoats.addAll(smallBoats['Singles'] ?? []);
+      allBoats.addAll(smallBoats['Doubles'] ?? []);
     }
 
     return allBoats;
@@ -152,4 +154,29 @@ class Service {
   Map<String, dynamic> getTablets() {
     return _ergroom?['tablets'] ?? {};
   }
+
+  // Filtered Search Methods
+  List<dynamic> getMensBoats(){
+    List<dynamic> output = [];
+    final mensBoats = _boathouse?['Boats']?['Mens'];
+    if (mensBoats != null) {
+      output.addAll(mensBoats['Eights'] ?? []);
+      output.addAll(mensBoats['Fours'] ?? []);
+    }
+
+    
+    return output;
+  }
+
+   List<dynamic> getWomensBoats(){
+    List<dynamic> output = [];
+    final womensBoats = _boathouse?['Boats']?['Womens'];
+    if (womensBoats != null) {
+      output.addAll(womensBoats['Eights'] ?? []);
+      output.addAll(womensBoats['Fours'] ?? []);
+    }
+    return output;
+  }
+
+
 }
