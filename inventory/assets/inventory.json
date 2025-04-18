@@ -13,7 +13,7 @@
             {
               "name":"Queen",
               "pairing":"Queen",
-              "Wrench-Size":"10mm",
+              "Wrench-Size":"7/16in",
               "Brand":"Wintech"
             },
             {
@@ -23,7 +23,7 @@
               "Brand":"Empacher"
             }
         ],
-        
+
         "Fours":[
           {
             "name":"SGB",
@@ -83,7 +83,7 @@
           {
             "name":"Wintech 4",
             "pairing":"wintech4",
-            "Wrench-Size":"10mm",
+            "Wrench-Size":"7/16in",
             "Brand":"Wintech"
           },
           {
@@ -108,7 +108,7 @@
           {
             "name":"Matt Huff",
             "pairing":"Huff",
-            "Wrench-Size":"10mm",
+            "Wrench-Size":"7/16in",
             "Brand":"Wintech"
           },
           {
@@ -126,7 +126,7 @@
           {
             "name":"Elizabeth Cecilia Bergen",
             "pairing":"ECB",
-            "Wrench-Size":"10mm",
+            "Wrench-Size":"7/16in",
             "Brand":"Wintech"
           },
           {
