@@ -186,7 +186,7 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
                       ),
                     );
           }
-      ) 
+      )  
 
       // GridView
       : 

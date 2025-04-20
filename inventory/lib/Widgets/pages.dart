@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inventory/service/BoatHouse.dart';
+import 'package:inventory/Widgets/BoatHouse.dart';
 
 class Boathouse extends StatelessWidget {
 

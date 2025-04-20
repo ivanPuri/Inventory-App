@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:inventory/service/pages.dart';
-import 'package:inventory/service/widgets.dart';
+import 'package:inventory/Widgets/pages.dart';
+import 'package:inventory/Widgets/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 

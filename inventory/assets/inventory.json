@@ -156,27 +156,42 @@
       "Sweeping": {
         "Mens": [
           {
-          "name":"Orange Skinnies"
+          "name":"Orange Skinnies",
+          "pairing":"OS"
           },
           {
-            "name":"Green Grandles"
+            "name":"Green Grandles",
+            "pairing":"GG"
           },
           {
-            "name":"Croackers"
+            "name":"Croackers",
+            "pairing":"Croak"
           }
       ],
         "Womens": [
           {
-          "name":"Blue Grandles"
+          "name":"Blue Grandles",
+          "pairing":"BG"
           },
           {
-            "name":"Black Handles"
+            "name":"Pink Grandles",
+            "pairing":"PinkG"
           },
           {
-            "name":"Wooden Skinnies"
+            "name":"Purple Grandles",
+            "pairing":"PurpG"
           },
           {
-            "name":"Green Skinnies"
+            "name":"Black Handles",
+            "pairing":"BlackH"
+          },
+          {
+            "name":"Wooden Skinnies",
+            "pairing":"WS"
+          },
+          {
+            "name":"Green Skinnies",
+            "pairing":"GS"
           }
       ]
       },
@@ -242,9 +257,8 @@
         }
       ],
       "Oarlocks":[{
-        "Name":"Black Riggors",
+        "Name":"Spare Oarlocks",
         "count": 8
-
       }],
       "Shoes":[{
         "Brand":"Vespoli",
@@ -257,10 +271,6 @@
       "Tracks":[{
         "Brand":"Wintech",
         "Pair Count": 4
-      },
-      {
-        "Brand":"Vespoli",
-        "Pair Count": 7
       }],
       "Seats":[{
         "Brand":"Vespoli",
