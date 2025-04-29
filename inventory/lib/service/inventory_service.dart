@@ -69,13 +69,13 @@ class Service {
   }
 
   //? Get Riggors is being used in Ape 
-  Map<String,List<dynamic>> getRestofRigging(){
+  Map<String,dynamic> getRestofRigging(){
     return _boathouse?['Rigging'] ?? [];
   }
 
   //? Get Maintenance is being used in Ape
-  Map<String,int> getMaintenance() {
-    return _boathouse?['Maintenance']["Wrenches"] ?? [];
+  Map<String,dynamic> getMaintenance() {
+    return _boathouse?['Maintanance']["Wrenches"] ?? [];
   }
 
   //? Get Cox is being used in Ape

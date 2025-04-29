@@ -1,6 +1,6 @@
 // Abstracted Parser for Equipment
 
-import 'package:inventory/model/Inventory_Item.dart';
+import 'package:inventory/model/inventory_item.dart';
 import 'package:inventory/model/boat.dart';
 import 'package:inventory/model/count_item.dart';
 import 'package:inventory/model/oar.dart';
@@ -133,9 +133,8 @@ class Ape{
   return allBoats;
 }
 
-
   _parseRiggING(){
-    final Map<String,List<dynamic>> dict = _service.getRestofRigging();
+    final Map<String,dynamic> dict = _service.getRestofRigging();
     final keys = dict.keys;
     final List<InventoryItem> inventoryAdd = countsByInventoryType["Rigging"]!;
 
@@ -175,7 +174,7 @@ class Ape{
   }
 
   _parseMaintenance(){
-    final Map<String,int> dict = _service.getMaintenance();
+    final Map<String,dynamic> dict = _service.getMaintenance();
     final keys = dict.keys;
     final List<InventoryItem> inventoryAdd = [];
     countsByInventoryType["Maintenance"] = inventoryAdd;
@@ -209,7 +208,7 @@ class Ape{
       }else{
         for (dynamic item in list){
           // Add Pairing Logic
-          CountItem newItem = CountItem.name(type: InventoryType.storage, location: LocationType.boatHouse, count: item["Count"], name: key);
+          CountItem newItem = CountItem.name(type: InventoryType.storage, location: LocationType.boatHouse, count: item["count"] ?? 0, name: key);
           inventoryAdd.add(newItem);
         }
       }
@@ -226,14 +225,14 @@ class Ape{
 
     for (String key in keys){
       if (key != "Weights"){
-        Map<String,int> item = dict[key]!;
-        CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: item["Count"]!, name: key); 
+        Map<String,dynamic> item = dict[key]!;
+        CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: item["count"]?? 0 , name: key); 
         inventoryAdd.add(newItem);
       }else{
         List<dynamic> item = dict[key]!;
         for (dynamic weight in item){
           String lb = weight["Weight"];
-          CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: weight["Count"], name: "$lb lb plate");
+          CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: weight["count"] ?? 0, name: "$lb lb plate");
           inventoryAdd.add(newItem);
         }
         
@@ -275,4 +274,8 @@ class Ape{
     return allBoats;
   }
 
+  List<InventoryItem> getOars(){
+    return countsByInventoryType["Oars"]!;
+
+  }
 }

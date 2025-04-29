@@ -1,4 +1,4 @@
-import 'package:inventory/model/Inventory_Item.dart';
+import 'package:inventory/model/inventory_item.dart';
 
 class CountItem extends InventoryItem {
 

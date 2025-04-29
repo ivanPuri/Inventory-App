@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inventory/model/inventory_item.dart';
 import 'package:inventory/service/ape_service.dart';
 
 class Boats extends StatefulWidget {
@@ -56,7 +57,7 @@ class _BoatsState extends State<Boats> {
               )
             ),
             onTap: () => {
-              // Go back to Home Page 
+              //! Go back to Home Page 
             },
           ),
 
@@ -164,14 +165,14 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
                       margin: EdgeInsets.all(10),
                       child: GestureDetector(
                         child: ListTile(
-                          leading: boat["Brand"] == "Vespoli" ? Image.asset("assets/vespoli.png")
-                          : boat["Brand"] == "King" ? Image.asset("assets/king.png")
-                          : boat["Brand"] == "Wintech" ? Image.asset("assets/wintech.png")
-                          : boat["Brand"] == "Kaschper" ? Image.asset("assets/kaschper.jpeg")
-                          : boat["Brand"] == "Empacher" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/empacher.png"))
+                          leading: boat.brand == "Vespoli" ? Image.asset("assets/vespoli.png")
+                          : boat.brand == "King" ? Image.asset("assets/king.png")
+                          : boat.brand == "Wintech" ? Image.asset("assets/wintech.png")
+                          : boat.brand == "Kaschper" ? Image.asset("assets/kaschper.jpeg")
+                          : boat.brand == "Empacher" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/empacher.png"))
                           : SizedBox(),
-                          title: Text("${ boat["name"] ?? 'Null Name' }"),
-                          trailing: Text(" ${boat["Wrench-Size"] ?? 'Null Wrench'}"),
+                          title: Text("${ boat.name ?? 'Null Name' }"),
+                          trailing: Text(" ${boat.wrenchSize ?? 'Null Wrench'}"),
                         ),
                         onTap: (){}
                       )
@@ -196,15 +197,15 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
                         child: Column(
                           children: [
                             SizedBox(height: 20),
-                            boat["Brand"] == "Vespoli" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/vespoli.png"))
-                          : boat["Brand"] == "King" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/king.png"))
-                          : boat["Brand"] == "Wintech" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/wintech.png"))
-                          : boat["Brand"] == "Kaschper" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/kaschper.jpeg"))
-                          : boat["Brand"] == "Empacher" ? SizedBox(height: 90, width: 90, child: Image.asset("assets/empacher.png"))
+                            boat.brand == "Vespoli" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/vespoli.png"))
+                          : boat.brand == "King" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/king.png"))
+                          : boat.brand == "Wintech" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/wintech.png"))
+                          : boat.brand == "Kaschper" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/kaschper.jpeg"))
+                          : boat.brand == "Empacher" ? SizedBox(height: 90, width: 90, child: Image.asset("assets/empacher.png"))
                           : SizedBox(),                      
-                            Text("${ boat["name"] ?? 'Null Name'}",
+                            Text("${ boat.name ?? 'Null Name'}",
                               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
-                            Text(" ${boat["Wrench-Size"] ?? 'Null Wrench'}"
+                            Text(" ${boat.wrenchSize ?? 'Null Wrench'}"
                               , style: TextStyle(fontSize: 15)),                           
                           ],                      
                       )
@@ -217,10 +218,184 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
   }
 }
 
+class Oars extends StatefulWidget {
+  final Ape ape;
+
+  const Oars({super.key, required this.ape});
+
+  @override
+  State<Oars> createState() => _OarsState();
+}
+
+class _OarsState extends State<Oars> {
+  bool _isList = true;
+  bool _loading = true;
+
+   @override
+  void initState() {
+    super.initState();
+    _loading = false;
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    if (_loading){
+       return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+
+          title: GestureDetector(
+            child: Center(
+              child: Text(
+                "Oars",
+                style: TextStyle(color: Color(0xffFFB81C))
+              )
+            ),
+            onTap: () => {
+              //! Go back to Home Page 
+            },
+          ),
+
+          backgroundColor: Color(0xff003594),
+          iconTheme: IconThemeData(
+            color: Color(0xffFFB81C),
+          ),
+
+          actions: [
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                //! Implement search functionality here
+              },
+            ),
+            IconButton(
+              icon: Icon(_isList ? Icons.grid_view_outlined : Icons.list),
+              onPressed: () {
+                setState(() {
+                  _isList = !_isList;
+                });
+              },
+            )
+          ],
+      ),
+
+      // Body
+      body: InventoryItemDisplay(items: widget.ape.getOars(), isList: _isList,)
+      );
+  }
+}
+
+// !----------------------------------------------------------------------
+
+class InventoryItemDisplay extends StatefulWidget {
+  final bool isList;
+  final List<dynamic> items;
+  
+  const InventoryItemDisplay({super.key, required this.items, required this.isList});
+
+  @override
+  State<InventoryItemDisplay> createState() => _InventoryItemDisplayState();
+}
+
+// !----------------------------------------------------------------------
+
+class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
+  late List<dynamic> input;
+  late bool isList;
+
+
+  @override
+  void initState(){
+    super.initState();
+    input = List.from(widget.items);
+    isList = widget.isList;
+  }
+
+  @override
+  void didUpdateWidget(covariant InventoryItemDisplay oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.items != widget.items || oldWidget.isList != widget.isList) {
+      setState(() {
+        input = List.from(widget.items);
+        isList = widget.isList;
+      });
+    }
+  }
+  
+
+
+  @override
+  Widget build(BuildContext context) {
+    return  
+    // List View
+    isList == true ? 
+      ListView.builder(
+          itemCount: input.length,
+          itemBuilder: (context, index) {
+          final item = input[index];
+          InventoryType inventoryType = item.type;
+
+          if (inventoryType == InventoryType.oar){
+            return Card(
+                      margin: EdgeInsets.all(10),
+                      child: GestureDetector(
+                        child: ListTile(
+                          leading: Image.asset("assets/carhart.png"),
+                          title: Text("${item.name}"),
+                          trailing: Text("${item.gender}"),
+                        ),
+                        onTap: (){
+                          // ! Add functionality
+                        }
+                      )
+                       
+                    );
+          }else{
+            return Text("Shiiiii man");
+          }
+          //Rest of inventoryTypes
+                        
 
 
 
+          }
+      )  
 
+      // GridView
+      : 
+      GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1.1
+                  ),
+                  itemCount: input.length,
+                  itemBuilder: (context, index) {
+                  final item = input[index];
+                  final inventoryType = item.type;
+                  
+                   if (inventoryType == InventoryType.oar){
+                      return Card(
+                                margin: EdgeInsets.all(10),
+                                child: GestureDetector(
+                                  child: ListTile(
+                                    leading: Image.asset("assets/carhart.png"),
+                                    title: Text("${item.name}"),
+                                    trailing: Text("${item.gender}"),
+                                  ),
+                                  onTap: (){
+                                    // ! Add functionality
+                                  }
+                                )
+                                
+                              );
+                    }
+                }
+              );
 
-
-
+  }
+}
