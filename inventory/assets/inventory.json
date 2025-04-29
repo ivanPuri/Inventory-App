@@ -156,42 +156,33 @@
       "Sweeping": {
         "Mens": [
           {
-          "name":"Orange Skinnies",
-          "pairing":"OS"
+          "name":"Orange Skinnies"
           },
           {
-            "name":"Green Grandles",
-            "pairing":"GG"
+            "name":"Green Handles"
           },
           {
-            "name":"Croackers",
-            "pairing":"Croak"
+            "name":"Croackers"
           }
       ],
         "Womens": [
           {
-          "name":"Blue Grandles",
-          "pairing":"BG"
+          "name":"Blue Grandles"
           },
           {
-            "name":"Pink Grandles",
-            "pairing":"PinkG"
+            "name":"Pink Grandles"
           },
           {
-            "name":"Purple Grandles",
-            "pairing":"PurpG"
+            "name":"Purple Grandles"
           },
           {
-            "name":"Black Handles",
-            "pairing":"BlackH"
+            "name":"Black Handles"
           },
           {
-            "name":"Wooden Skinnies",
-            "pairing":"WS"
+            "name":"Wooden Skinnies"
           },
           {
-            "name":"Green Skinnies",
-            "pairing":"GS"
+            "name":"Green Skinnies"
           }
       ]
       },
@@ -213,7 +204,7 @@
       "Riggors":[
         {
           "Label":"Dark Green Zip-Tie",
-          "pairing":"Salk"
+          "pairing":"Jonas Salk"
         },
         {
           "Label":"Purple Zip-Tie",
@@ -225,7 +216,7 @@
         },
         {
           "Label":"Dark Blue Zip-Tie",
-          "pairing":"Spirit"
+          "pairing":"Spirit of the Allegheny"
         },
         {
           "Label":"Carbon Fiber",
@@ -237,19 +228,19 @@
         },
         {
           "Label":"Red + Yellow Zip-Tie",
-          "pairing":"JM"
+          "pairing":"Jimmy & Merry"
         },
         {
           "Label":"Light Blue + Green Zip-Tie",
-          "pairing":"2V"
+          "pairing":"Veritas et virtus"
         },
         {
           "Label":"Red + Purple Zip-Tie",
-          "pairing":"Wintech4"
+          "pairing":"Wintech 4"
         },
         {
           "Label":"Black + Green Zip-Tie",
-          "pairing":"KP"
+          "pairing":"Karens Pride"
         },
         {
           "Label":"Grey + Lime Zip-Tie",
@@ -258,7 +249,7 @@
       ],
       "Oarlocks":[{
         "Name":"Spare Oarlocks",
-        "count": 8
+        "Count": 8
       }],
       "Shoes":[{
         "Brand":"Vespoli",
@@ -270,7 +261,7 @@
       }],
       "Tracks":[{
         "Brand":"Wintech",
-        "Pair Count": 4
+        "Count": 4
       }],
       "Seats":[{
         "Brand":"Vespoli",
@@ -278,47 +269,42 @@
       }]
     },
 
-    "Coxswain":{
-      "Lights":[
-        {
-        "SternCount":12
-        },
-        {
-          "BowCount":19
-  }],
-      "SpeedCoach":[{
-        "count": 6
-      }],
-      "CoxBox":[{
-        "count": 11
-      }],
-      "Headsets":[{
-        "count": 11
+    "Coxswain": {
+        "Lights":[
+          {
+            "Name":"Stern",
+            "Count":12
+          },
+          {
+            "Name":"Bow",
+            "Count":19
+          }
+        ],
+        "SpeedCoach":[{
+          "Count": 6
+        }],
+        "CoxBox":[{
+          "Count": 11
+        }],
+        "Headsets":[{
+          "Count": 11
 
-      }]
+        }]
     },
 
     "Maintanance":{
-      "Hardware":{
-        "10mm":{
-          "Wrenches":[{
-            "count": 3
-          }]
-        },
-        "7/16": {
-          "Wrenches":[{
-            "count": 3
-          }]
-        }
+      "Wrenches":{
+        "10": 3,
+        "7/16": 3
       }
-      
-     
     },
 
-    "Storage/Transport":{
-      "BoatCovers":[{
+    "Storage":{
+      "BoatCovers":[
+        {
         "Pairing": "Prince"
-      }],
+        }
+      ],
       "Slings":[{
         "count": 16
       }],
@@ -326,30 +312,33 @@
         "count": 31
       }],
       "LowBoys":[{
-        "SetCount": 4
+        "Count": 4
       }]
     }
 
   },
 
   "Ergroom": {
-    "Bergs": [{
-      "count": 3
-    }],
-    "C2": [{
-      "count ": 3
-    }],
-    "RP3": [{
-      "count ": 3
-    }],
-    "Weights": [{
-      "name":"Black Riggors"
-    }],
-    "Bars": [{
-      "name":"Black Riggors"
-    }],
-    "Tablets": [{
-      "count": 5
-    }]
+    "Bergs": {
+      "Count": 3
+    },
+    "C2": {
+      "Count ": 3
+    },
+    "RP3": {
+      "Count ": 3
+    },
+    "Weights": [
+      {
+      "Weight":"5 lb",
+      "Count": 4
+      }
+    ],
+    "Bars": {
+      "Count": 5
+    },
+    "Tablets": {
+      "Count": 5
+    }
   }
 }

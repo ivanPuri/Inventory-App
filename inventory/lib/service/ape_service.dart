@@ -1,0 +1,278 @@
+// Abstracted Parser for Equipment
+
+import 'package:inventory/model/Inventory_Item.dart';
+import 'package:inventory/model/boat.dart';
+import 'package:inventory/model/count_item.dart';
+import 'package:inventory/model/oar.dart';
+import 'package:inventory/service/inventory_service.dart';
+
+class Ape{
+  
+  final Service _service;
+
+  late final Map<String, Boat> boats;
+  late final Map<String, List<InventoryItem>> countsByInventoryType;
+
+  Ape(this._service){
+    countsByInventoryType = {};
+    boats = {};
+  }
+
+  Future<void> initialize() async {
+    await _service.fetchInventory();
+    _parseBoats();
+    _parseRiggors();
+    _parseRiggING();
+    _parseCox();
+    _parseMaintenance();
+    _parseStorage();
+    _parseErgRoom();
+  }
+  
+  _parseBoats() {
+      List<Boat> allBoats = [];
+      final mens = _service.boathouse?["Boats"]!['Mens'];
+      final womens = _service.boathouse?["Boats"]!['Womens'];
+      final smallboats = _service.boathouse?["Boats"]!['Smallboats'];
+
+      allBoats.addAll(_extractBoats(mens, Gender.mens));
+      allBoats.addAll(_extractBoats(womens, Gender.womens));
+      allBoats.addAll(_extractBoats(smallboats, Gender.smallboats));
+      
+      for (Boat boat in allBoats) {
+        boats[boat.name] = boat;
+      }
+
+        
+  }
+
+  List<List<Oar>> _parseOars() {
+    int index = 0;
+
+    final List<dynamic> oars = _service.getOars();
+    final List<Oar> mensList = [];
+    final List<Oar> womensList = [];
+    final List<Oar> sculling = [];
+    final List<InventoryItem> inventoryAdd = [];
+    countsByInventoryType["Oars"] = inventoryAdd;
+
+  
+
+    for (List<dynamic> list in oars) {
+      switch (index++) {
+        case 0:
+          for (final oar in list) {
+            Oar newOar = Oar(name: oar["name"], gender: Gender.mens , type: InventoryType.oar, location: LocationType.boatHouse, count: 1);
+            mensList.add(newOar);
+            inventoryAdd.add(newOar);
+          }
+          break;
+
+        case 1:
+        for (final oar in list) {
+            Oar newOar = Oar(name: oar["name"], gender: Gender.womens , type: InventoryType.oar, location: LocationType.boatHouse, count: 1);
+            womensList.add(newOar);
+            inventoryAdd.add(newOar);
+
+          }
+          break;
+
+        case 2:
+        for (final oar in list) {
+            Oar newOar = Oar(name: oar["name"], gender: Gender.smallboats , type: InventoryType.oar, location: LocationType.boatHouse, count: oar["SetCount"]);
+            sculling.add(newOar);
+            inventoryAdd.add(newOar);
+          }
+          break;
+      }
+    }
+
+    return [mensList, womensList, sculling];
+
+  }
+
+  _parseRiggors(){
+
+    final List<dynamic> riggors = _service.getRiggors();
+    final List<InventoryItem> inventoryAdd = [];
+    countsByInventoryType["Rigging"] = inventoryAdd;
+
+    for (Map<String,dynamic> riggor in riggors) {
+      String label = riggor["Label"]!;
+      String pairing = riggor["pairing"]!;
+
+      Boat boat = boats[pairing]!;
+      boat.riggors = label;
+
+      CountItem newRiggor = CountItem.name(type: InventoryType.rigging, location: LocationType.boatHouse, count: 1, name: label);
+      inventoryAdd.add(newRiggor);
+    }
+    
+  }
+
+  List<Boat> _extractBoats(Map<dynamic, dynamic> mws, Gender gender) {
+  final List<Boat> allBoats = [];
+  final List<List<Oar>> allOars = _parseOars();
+
+  mws.forEach((category, mapList) {
+    mapList.forEach((boat) {
+        Boat newBoat = Boat(
+          brand: boat['Brand'],
+          name: boat['name'],
+          wrenchSize: boat['Wrench-Size'],
+          gender: gender, // You need to determine this based on genderCategory
+          shellType: category == "Eights" ? ShellType.eight : category == "Fours" ? ShellType.four : category == "Singles" ? ShellType.single :category == "Eights" ? ShellType.eight : ShellType.double, // You need to determine this based on category
+          type: InventoryType.boat,
+          location: LocationType.boatHouse,
+        );
+        newBoat.oars = allOars[0]; // assign appropriate oars
+        allBoats.add(newBoat);
+    });
+  });
+
+  return allBoats;
+}
+
+
+  _parseRiggING(){
+    final Map<String,List<dynamic>> dict = _service.getRestofRigging();
+    final keys = dict.keys;
+    final List<InventoryItem> inventoryAdd = countsByInventoryType["Rigging"]!;
+
+    for(String key in keys){
+      if (key != "Riggors"){
+        List<dynamic> list = dict[key]!;
+        for (dynamic item in list){
+          CountItem newItem = CountItem(type: InventoryType.rigging, location: LocationType.boatHouse, count: item["Count"]);
+          inventoryAdd.add(newItem);
+        }
+      }
+    }
+
+  }
+
+  _parseCox(){
+    final Map<String,dynamic> dict = _service.getCox();
+    final keys = dict.keys;
+    final List<InventoryItem> inventoryAdd = [];
+    countsByInventoryType["Cox"] = inventoryAdd;
+
+    for(String key in keys){
+      List<dynamic> list = dict[key]!;
+      if (key != "Lights"){
+        for (dynamic item in list){
+          CountItem newItem = CountItem.name(type: InventoryType.coxing, location: LocationType.boatHouse, count: item["Count"], name: key);
+          inventoryAdd.add(newItem);
+        }
+      }else{
+        for (dynamic item in list){
+          CountItem newItem = CountItem.name(type: InventoryType.coxing, location: LocationType.boatHouse, count: item["Count"], name: item["Name"]);
+          inventoryAdd.add(newItem);
+        }
+
+      }
+    }
+  }
+
+  _parseMaintenance(){
+    final Map<String,int> dict = _service.getMaintenance();
+    final keys = dict.keys;
+    final List<InventoryItem> inventoryAdd = [];
+    countsByInventoryType["Maintenance"] = inventoryAdd;
+
+    for(String key in keys){;
+      if(key == "10"){
+          CountItem newItem = CountItem.name(type: InventoryType.maintenance, location: LocationType.boatHouse, count: dict[key]!, name: "10mm Wrench");
+          inventoryAdd.add(newItem);
+      }else{
+          CountItem newItem = CountItem.name(type: InventoryType.maintenance, location: LocationType.boatHouse, count: dict[key]!, name: "7/16in Wrench");  
+          inventoryAdd.add(newItem);
+      }
+    }
+    
+  }
+  
+  _parseStorage(){
+    final Map<String,dynamic> dict = _service.getStorage();
+    final keys = dict.keys;
+    final List<InventoryItem> inventoryAdd = [];
+    countsByInventoryType["Storage"] = inventoryAdd;
+
+    for(String key in keys){
+      List list = dict[key];
+      if (key == "BoatCovers"){
+        for (dynamic item in list){
+          // Add Pairing Logic
+          CountItem newItem = CountItem.name(type: InventoryType.storage, location: LocationType.boatHouse, count: 1, name: key);
+          inventoryAdd.add(newItem);
+        }
+      }else{
+        for (dynamic item in list){
+          // Add Pairing Logic
+          CountItem newItem = CountItem.name(type: InventoryType.storage, location: LocationType.boatHouse, count: item["Count"], name: key);
+          inventoryAdd.add(newItem);
+        }
+      }
+
+    }
+
+  } 
+
+  _parseErgRoom(){
+    final Map<String, dynamic> dict = _service.getErgRoom()!;
+    final keys = dict.keys;
+    final List<InventoryItem> inventoryAdd = [];
+    countsByInventoryType["ErgRoom"] = inventoryAdd; 
+
+    for (String key in keys){
+      if (key != "Weights"){
+        Map<String,int> item = dict[key]!;
+        CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: item["Count"]!, name: key); 
+        inventoryAdd.add(newItem);
+      }else{
+        List<dynamic> item = dict[key]!;
+        for (dynamic weight in item){
+          String lb = weight["Weight"];
+          CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: weight["Count"], name: "$lb lb plate");
+          inventoryAdd.add(newItem);
+        }
+        
+      }
+
+
+    }
+    
+  }
+
+  List<Boat> getMensBoats(){
+    List<Boat> mensBoats = [];
+    final keys = boats.keys;
+    for(String key in keys){
+      if (boats[key]?.gender == Gender.mens){
+        mensBoats.add(boats[key]!);
+      }
+    }
+    return mensBoats;
+  }
+
+  List<Boat> getWomensBoats(){
+    List<Boat> womensBoats = [];
+    final keys = boats.keys;
+    for(String key in keys){
+      if (boats[key]?.gender == Gender.womens){
+        womensBoats.add(boats[key]!);
+      }
+    }
+    return womensBoats;
+  }
+
+  List<Boat> getAllBoats(){
+    List<Boat> allBoats = [];
+    final keys = boats.keys;
+    for(String key in keys){
+        allBoats.add(boats[key]!);
+    }
+    return allBoats;
+  }
+
+}

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:inventory/Widgets/pages.dart';
 import 'package:inventory/Widgets/widgets.dart';
+import 'package:inventory/service/ape_service.dart';
+import 'package:inventory/service/inventory_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-void main() {
-  runApp(login());
+Future<void> main() async {
+  runApp(login()); 
 }
 
 // ignore: camel_case_types
@@ -22,12 +24,14 @@ class login extends StatelessWidget {
 }
 
 class MyApp extends StatelessWidget {
+
+
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const Homepage(),
+      home: Homepage(),
       debugShowCheckedModeBanner: false,
     );
     
@@ -38,24 +42,44 @@ class Homepage extends StatefulWidget {
   const Homepage({super.key});
 
   
-
   @override
   State<Homepage> createState() => _HomepageState();
 }
 
 class _HomepageState extends State<Homepage> {
   int _selectedIndex = 0;
+  List<Widget> _pages = [];
+  Ape ape = Ape(Service());
+  bool initialised = false; 
+
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeService(); // Initialize the service
+    
+  }
+
+  Future<void> _initializeService() async {
+  await ape.initialize(); 
+
+  setState(() {
+    _pages = [
+      Boathouse(ape: ape), 
+      Center(child: Text('Search Page')),
+      Bellefield(),
+    ];
+    initialised = true; 
+  });
+}
+
 
   Future<String?> _getEmail() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('email'); // Get the saved email
   }
 
-  final List<Widget> _pages = [
-    Boathouse(),//replace this with the eventual bellefield page
-    Center(child: Text('Search Page')),//replace this with the eventual search page
-    Bellefield(),//replace this with the eventual boat house page
-  ];
+  
 
   void _onItemTapped(int index) {
     setState(() {
@@ -65,6 +89,13 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
+    if (_pages.isEmpty || initialised == false) {
+      return Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    } 
+
+
     return Scaffold (
       appBar: AppBar(
         title: const Text('Crew Inventory',

@@ -62,13 +62,13 @@ class MyDrawer extends StatelessWidget {
 }
 
 class ProfileImagePicker extends StatefulWidget {
-  const ProfileImagePicker({Key? key}) : super(key: key);
+  const ProfileImagePicker({super.key});
 
   @override
-  _ProfileImagePickerState createState() => _ProfileImagePickerState();
+  ProfileImagePickerState createState() => ProfileImagePickerState();
 }
 
-class _ProfileImagePickerState extends State<ProfileImagePicker> {
+class ProfileImagePickerState extends State<ProfileImagePicker> {
   File? _image;  // Variable to store the selected image
 
   // Function to pick an image from the gallery or camera
@@ -108,10 +108,10 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  LoginScreenState createState() => LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   bool _isInvalidUser = false;
 
@@ -131,23 +131,27 @@ class _LoginScreenState extends State<LoginScreen> {
 }
 
   Future<void> _login() async {
-    String email = _emailController.text;
-    List<String> validUsers = await _loadValidUsers();
+  String email = _emailController.text;
+  List<String> validUsers = await _loadValidUsers();
 
-    if (validUsers.contains(email)) {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setBool('isLoggedIn', true);
-      await prefs.setString('email', email); // Save login status
+  if (validUsers.contains(email)) {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', true);
+    await prefs.setString('email', email); // Save login status
+
+    // Check if the widget is still mounted before using the context
+    if (mounted) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => MyApp()),
       );
-    } else {
-      setState(() {
-        _isInvalidUser = true;
-      });
     }
+  } else {
+    setState(() {
+      _isInvalidUser = true;
+    });
   }
+}
 
   
 

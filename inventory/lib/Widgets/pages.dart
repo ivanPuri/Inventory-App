@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:inventory/Widgets/BoatHouse.dart';
+import 'package:inventory/Widgets/boat_house.dart';
+import 'package:inventory/service/ape_service.dart';
 
 class Boathouse extends StatelessWidget {
+  final Ape ape;
 
-  const Boathouse({super.key});
+  const Boathouse({
+    super.key,
+    required this.ape
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +18,7 @@ class Boathouse extends StatelessWidget {
       crossAxisSpacing: 10,
       mainAxisSpacing: 10,
       children: [
-        _buildGridItem(context, 'Boats', Boats()),
+        _buildGridItem(context, 'Boats', Boats(ape: ape)),
         _buildGridItem(context, 'Oars/Sculls', Placeholder()),
         _buildGridItem(context, 'Rigging', Placeholder()), 
         _buildGridItem(context, 'Maintenance', Placeholder()),

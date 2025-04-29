@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:inventory/service/inventory_service.dart';
+import 'package:inventory/service/ape_service.dart';
 
 class Boats extends StatefulWidget {
-  const Boats({super.key});
+  final Ape ape;
+
+  const Boats({super.key, required this.ape});
 
   @override
   State<Boats> createState() => _BoatsState();
 }
 
 class _BoatsState extends State<Boats> {
-
-  final _service = Service();
-  List<dynamic> _boats = [];
+  final List<dynamic> _boats = [1,2,3];
   bool _isList = true;
   bool _loading = true;
   int _selectedIndex = 1;
@@ -20,29 +20,17 @@ class _BoatsState extends State<Boats> {
    @override
   void initState() {
     super.initState();
-    _loadData();
+    _loading = false;
+    _boats[0] = widget.ape.getMensBoats();
+    _boats[1] = widget.ape.getAllBoats();
+    _boats[2] = widget.ape.getWomensBoats();
   }
 
-  Future<void> _loadData() async {
-    await _service.fetchInventory();
-    setState(() {
-      _boats = _service.getBoats();
-      _loading = false;
-
-    });
-  }
+  
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      // update the boats list based on the selected tab
-      if (index == 0) {
-        _boats = _service.getMensBoats();
-      } else if (index == 1) {
-        _boats = _service.getBoats();
-      } else {
-        _boats = _service.getWomensBoats();
-      }
     });
   }
   
@@ -116,9 +104,9 @@ class _BoatsState extends State<Boats> {
       ),
 
       // Body
-      body: _selectedIndex == 0 ?  BoatsDisplay(boats: _boats, isList: _isList)
-            : _selectedIndex == 1 ?  BoatsDisplay(boats: _boats, isList: _isList)
-            : BoatsDisplay(boats: _boats, isList: _isList)
+      body: _selectedIndex == 0 ?  BoatsDisplay(boats: _boats[_selectedIndex], isList: _isList)
+            : _selectedIndex == 1 ?  BoatsDisplay(boats: _boats[_selectedIndex], isList: _isList)
+            : BoatsDisplay(boats: _boats[_selectedIndex], isList: _isList)
 
      
      
@@ -174,16 +162,20 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
           final boat = input[index];
           return Card(
                       margin: EdgeInsets.all(10),
-                      child: ListTile(
-                        leading: boat["Brand"] == "Vespoli" ? Image.asset("assets/vespoli.png")
-                        : boat["Brand"] == "King" ? Image.asset("assets/king.png")
-                        : boat["Brand"] == "Wintech" ? Image.asset("assets/wintech.png")
-                        : boat["Brand"] == "Kaschper" ? Image.asset("assets/kaschper.jpeg")
-                        : boat["Brand"] == "Empacher" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/empacher.png"))
-                        : SizedBox(),
-                        title: Text("${ boat["name"] ?? 'Null Name' }"),
-                        trailing: Text(" ${boat["Wrench-Size"] ?? 'Null Wrench'}"),
-                      ),
+                      child: GestureDetector(
+                        child: ListTile(
+                          leading: boat["Brand"] == "Vespoli" ? Image.asset("assets/vespoli.png")
+                          : boat["Brand"] == "King" ? Image.asset("assets/king.png")
+                          : boat["Brand"] == "Wintech" ? Image.asset("assets/wintech.png")
+                          : boat["Brand"] == "Kaschper" ? Image.asset("assets/kaschper.jpeg")
+                          : boat["Brand"] == "Empacher" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/empacher.png"))
+                          : SizedBox(),
+                          title: Text("${ boat["name"] ?? 'Null Name' }"),
+                          trailing: Text(" ${boat["Wrench-Size"] ?? 'Null Wrench'}"),
+                        ),
+                        onTap: (){}
+                      )
+                       
                     );
           }
       )  
@@ -207,7 +199,7 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
                             boat["Brand"] == "Vespoli" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/vespoli.png"))
                           : boat["Brand"] == "King" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/king.png"))
                           : boat["Brand"] == "Wintech" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/wintech.png"))
-                          : boat["Brand"] == "Kaschper" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/kascpher.jpeg"))
+                          : boat["Brand"] == "Kaschper" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/kaschper.jpeg"))
                           : boat["Brand"] == "Empacher" ? SizedBox(height: 90, width: 90, child: Image.asset("assets/empacher.png"))
                           : SizedBox(),                      
                             Text("${ boat["name"] ?? 'Null Name'}",

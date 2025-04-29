@@ -2,11 +2,14 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class Service {
+
+
   Map<String, dynamic>? _inventory;
   Map<String, dynamic>? _boathouse;
   Map<String, dynamic>? _ergroom;
 
-  // Fetch the inventory data from the remote URL
+
+  //? fetchInventory is being used in Ape 
   Future<void> fetchInventory() async {
     final url = "https://raw.githubusercontent.com/ivanPuri/Inventory-App/refs/heads/main/inventory/assets/inventory.json";
     final response = await http.get(Uri.parse(url));
@@ -19,8 +22,7 @@ class Service {
     }
   }
 
-  // Unfiltered search methods, returns full List<dynamic> of items
-
+  //!getBoats will become depracated
   List<dynamic> getBoats() {
     List<dynamic> allBoats = [];
     final mensBoats = _boathouse?['Boats']?['Mens'];
@@ -46,116 +48,50 @@ class Service {
     return allBoats;
   }
 
+  //? Get Oars is being used in Ape 
   List<dynamic> getOars() {
     List<dynamic> allOars = [];
-    final sweeping = _boathouse?['Oars']?['Sweeping'] ?? [];
-    final sculling = _boathouse?['Oars']?['Sculling'] ?? [];
+    final mSweeping = _boathouse?['Oars']?['Sweeping']["Mens"] ?? [];
+    final wSweeping = _boathouse?['Oars']?['Sweeping']["Womens"] ?? [];
+    final sculling = _boathouse?['Oars']?['sculling'] ?? [];
 
-    allOars.addAll(sweeping);
-    allOars.addAll(sculling);
+
+    allOars.add(mSweeping);
+    allOars.add(wSweeping);
+    allOars.add(sculling);
 
     return allOars;
   }
 
-  List<dynamic> getRigging() {
-    List<dynamic> allRigging = [];
-    final riggors = _boathouse?['Rigging']?['Riggors'] ?? [];
-    final oarlocks = _boathouse?['Rigging']?['Oarlocks'] ?? [];
-    final shoes = _boathouse?['Rigging']?['Shoes'] ?? [];
-    final footStretchers = _boathouse?['Rigging']?['Footstretchers'] ?? [];
-    final tracks = _boathouse?['Rigging']?['Tracks'] ?? [];
-    final seats = _boathouse?['Rigging']?['Seats'] ?? [];
-
-    allRigging.addAll(riggors);
-    allRigging.addAll(oarlocks);
-    allRigging.addAll(shoes);
-    allRigging.addAll(footStretchers);
-    allRigging.addAll(tracks);
-    allRigging.addAll(seats);
-
-    return allRigging;
+  //? Get Riggors is being used in Ape 
+  List<dynamic> getRiggors() {
+    return _boathouse?['Rigging']["Riggors"] ?? [];
   }
 
-  List<dynamic> getMaintenance() {
-    List<dynamic> allMaintenance = [];
-    final bolts = (_boathouse?['Maintenance']?['10mm']?['Bolts'] ?? [])..addAll(_boathouse?['Maintenance']?['7/16']?['Bolts'] ?? []);
-    final nuts = (_boathouse?['Maintenance']?['10mm']?['Nuts'] ?? [])..addAll(_boathouse?['Maintenance']?['7/16']?['Nuts'] ?? []);
-    final washers = (_boathouse?['Maintenance']?['10mm']?['Washers'] ?? [])..addAll(_boathouse?['Maintenance']?['7/16']?['Washers'] ?? []);
-    final screws = (_boathouse?['Maintenance']?['10mm']?['Screws'] ?? [])..addAll(_boathouse?['Maintenance']?['7/16']?['Screws'] ?? []);
-    final lockWashers = (_boathouse?['Maintenance']?['10mm']?['LockWashers'] ?? [])..addAll(_boathouse?['Maintenance']?['7/16']?['LockWashers'] ?? []);
-    final wrenches = (_boathouse?['Maintenance']?['10mm']?['Wrenches'] ?? [])..addAll(_boathouse?['Maintenance']?['7/16']?['Wrenches'] ?? []);
-    final tapes = _boathouse?['Maintenance']?['Tapes'] ?? [];
-
-    allMaintenance.addAll(bolts);
-    allMaintenance.addAll(nuts);
-    allMaintenance.addAll(washers);
-    allMaintenance.addAll(screws);
-    allMaintenance.addAll(lockWashers);
-    allMaintenance.addAll(wrenches);
-    allMaintenance.addAll(tapes);
-
-    return allMaintenance;
+  //? Get Riggors is being used in Ape 
+  Map<String,List<dynamic>> getRestofRigging(){
+    return _boathouse?['Rigging'] ?? [];
   }
 
-  List<dynamic> getCox() {
-    List<dynamic> allCox = [];
-    final cox = _boathouse?['Coxswain']?['Lights'] ?? [];
-    final coxBoxes = _boathouse?['Coxswain']?['CoxBox'] ?? [];
-    final speedcoach = _boathouse?['Coxswain']?['SpeedCoach'] ?? [];
-
-    allCox.addAll(cox);
-    allCox.addAll(coxBoxes);
-    allCox.addAll(speedcoach);
-
-    return allCox;
+  //? Get Maintenance is being used in Ape
+  Map<String,int> getMaintenance() {
+    return _boathouse?['Maintenance']["Wrenches"] ?? [];
   }
 
-  List<dynamic> getStorage() {
-    List<dynamic> allStorage = [];
-    final boatBag = _boathouse?['Storage/Transport']?['BoatBag'] ?? [];
-    final covers = _boathouse?['Storage/Transport']?['BoatCovers'] ?? [];
-    final slings = _boathouse?['Storage/Transport']?['Slings'] ?? [];
-    final straps = _boathouse?['Storage/Transport']?['Straps'] ?? [];
-
-    allStorage.addAll(boatBag);
-    allStorage.addAll(covers);
-    allStorage.addAll(slings);
-    allStorage.addAll(straps);
-
-    return allStorage;
+  //? Get Cox is being used in Ape
+  Map<String,dynamic> getCox() {
+    return _boathouse?['Coxswain'] ?? [];
   }
 
-  List<dynamic> getC2() {
-    List<dynamic> allC2 = [];
-    final c2 = _ergroom?['C2'] ?? [];
-    final bergs = _ergroom?['Bergs'] ?? [];
-
-    allC2.addAll(c2);
-    allC2.addAll(bergs);
-
-    return allC2;
+  //? Get Storage is being used in Ape
+  Map<String,dynamic> getStorage() {
+    return _boathouse?['Storage'] ?? [];
   }
 
-  List<dynamic> getRP3() {
-    return _ergroom?['RP3'] ?? [];
+  Map<String, dynamic>? getErgRoom(){
+    return _ergroom;
   }
-
-  List<dynamic> getLifting() {
-    List<dynamic> allLifting = [];
-    final weights = _ergroom?['Weights'] ?? [];
-    final bars = _ergroom?['Bars'] ?? [];
-
-    allLifting.addAll(weights);
-    allLifting.addAll(bars);
-
-    return allLifting;
-  }
-
-  Map<String, dynamic> getTablets() {
-    return _ergroom?['tablets'] ?? {};
-  }
-
-  // Filtered Search Methods
+  //! will be deprecated
   List<dynamic> getMensBoats(){
     List<dynamic> output = [];
     final mensBoats = _boathouse?['Boats']?['Mens'];
@@ -178,5 +114,12 @@ class Service {
     return output;
   }
 
+  
+
+
+  // Getters for the private variables
+  Map<String, dynamic>? get boathouse => _boathouse;
+  Map<String, dynamic>? get ergroom => _ergroom;
+  Map<String, dynamic>? get inventory => _inventory;
 
 }
