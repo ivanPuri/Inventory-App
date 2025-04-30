@@ -1,10 +1,11 @@
 // Abstracted Parser for Equipment
 
-import 'package:inventory/model/inventory_item.dart';
 import 'package:inventory/model/boat.dart';
 import 'package:inventory/model/count_item.dart';
 import 'package:inventory/model/oar.dart';
 import 'package:inventory/service/inventory_service.dart';
+import 'package:inventory/model/inventory_item.dart';
+
 
 class Ape{
   
@@ -122,8 +123,6 @@ class Ape{
           wrenchSize: boat['Wrench-Size'],
           gender: gender, // You need to determine this based on genderCategory
           shellType: category == "Eights" ? ShellType.eight : category == "Fours" ? ShellType.four : category == "Singles" ? ShellType.single :category == "Eights" ? ShellType.eight : ShellType.double, // You need to determine this based on category
-          type: InventoryType.boat,
-          location: LocationType.boatHouse,
         );
         newBoat.oars = allOars[0]; // assign appropriate oars
         allBoats.add(newBoat);

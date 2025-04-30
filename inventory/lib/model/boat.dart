@@ -22,9 +22,8 @@ class Boat extends InventoryItem {
     required this.shellType,
     this.oars = const [],
     this.riggors = "",
-    required super.type,
-    required super.location
-    
+    super.type = InventoryType.boat,
+    super.location = LocationType.boatHouse
   });
 
 
