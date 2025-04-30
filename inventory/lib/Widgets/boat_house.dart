@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inventory/model/boat.dart';
 import 'package:inventory/model/inventory_item.dart';
 import 'package:inventory/service/ape_service.dart';
 
@@ -172,7 +173,7 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
                           : boat.brand == "Empacher" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/empacher.png"))
                           : SizedBox(),
                           title: Text("${ boat.name ?? 'Null Name' }"),
-                          trailing: Text(" ${boat.wrenchSize ?? 'Null Wrench'}"),
+                          trailing: Text(boat.shellType == ShellType.eight ? "8+" : boat.shellType == ShellType.four ? "4+" : boat.shellType == ShellType.double ? "2x" : boat.shellType == ShellType.single ? "1x" : "Null Type"),
                         ),
                         onTap: (){}
                       )
@@ -186,7 +187,9 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
       GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 1.1
+                      childAspectRatio: 1.1,
+                      
+
                   ),
                   itemCount: input.length,
                   itemBuilder: (context, index) {
@@ -195,18 +198,23 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
                     margin: EdgeInsets.all(7),
                     child: Center(
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SizedBox(height: 20),
                             boat.brand == "Vespoli" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/vespoli.png"))
                           : boat.brand == "King" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/king.png"))
                           : boat.brand == "Wintech" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/wintech.png"))
                           : boat.brand == "Kaschper" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/kaschper.jpeg"))
-                          : boat.brand == "Empacher" ? SizedBox(height: 90, width: 90, child: Image.asset("assets/empacher.png"))
+                          : boat.brand == "Empacher" ? SizedBox(height: 50, width: 90, child: Image.asset("assets/empacher.png"))
                           : SizedBox(),                      
                             Text("${ boat.name ?? 'Null Name'}",
                               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
-                            Text(" ${boat.wrenchSize ?? 'Null Wrench'}"
-                              , style: TextStyle(fontSize: 15)),                           
+                            Text(style: TextStyle(fontSize: 15),
+                            boat.shellType == ShellType.eight ? "8+" : boat.shellType == ShellType.four ? "4+" : boat.shellType == ShellType.double ? "2x" : boat.shellType == ShellType.single ? "1x" : "Null Type"
+                            ),
+
+
+                            Text(" ${boat.wrenchSize ?? 'Null Wrench'}", style: TextStyle(fontSize: 8)), 
+                                                        
                           ],                      
                       )
                     )                  
@@ -332,7 +340,7 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
   @override
   Widget build(BuildContext context) {
     return  
-    // List View
+    // !List View
     isList == true ? 
       ListView.builder(
           itemCount: input.length,
@@ -347,10 +355,10 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                         child: ListTile(
                           leading: Image.asset("assets/carhart.png"),
                           title: Text("${item.name}"),
-                          trailing: Text("${item.gender}"),
+                          trailing: Text(item.gender == Gender.mens ? "Mens" : item.gender == Gender.womens ? "Womens" : "Sculling"),
                         ),
                         onTap: (){
-                          // ! Add functionality
+                          //  Add functionality
                         }
                       )
                        
@@ -366,7 +374,10 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
           }
       )  
 
-      // GridView
+
+
+
+      // !GridView
       : 
       GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -380,18 +391,33 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                   
                    if (inventoryType == InventoryType.oar){
                       return Card(
-                                margin: EdgeInsets.all(10),
-                                child: GestureDetector(
-                                  child: ListTile(
-                                    leading: Image.asset("assets/carhart.png"),
-                                    title: Text("${item.name}"),
-                                    trailing: Text("${item.gender}"),
+                                margin: EdgeInsets.all(7),
+                                child: Center(
+                                  child: GestureDetector(
+                                    child: Column(
+                                      children: [
+                                        // SizedBox(height: ),
+                                        Image.asset("assets/carhart.png",
+                                          height: 70,
+                                          width: 70,
+                                        ),
+                                        Text(item.name,
+                                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+                                        Text(
+                                          item.gender == Gender.mens ? "Mens" : item.gender == Gender.womens ? "Womens" : "SmallBoats"
+                                        ),
+                                        Text(
+                                          (item.gender == Gender.mens || item.gender == Gender.womens) ? "Sweeping" : "Sculling"
+                                        )
+                                         
+                                      ]      
                                   ),
-                                  onTap: (){
-                                    // ! Add functionality
-                                  }
+                                    onTap: (){
+                                      //  Add functionality
+                                    },
                                 )
                                 
+                                )
                               );
                     }
                 }
@@ -399,3 +425,5 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
 
   }
 }
+
+                                 

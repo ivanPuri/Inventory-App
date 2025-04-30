@@ -10,7 +10,7 @@ class Oar extends CountItem{
     required super.type,
     required super.location,
     required super.count,
-    required name,
+    required super.name,
   });
   
 

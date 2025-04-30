@@ -53,7 +53,7 @@ class Service {
     List<dynamic> allOars = [];
     final mSweeping = _boathouse?['Oars']?['Sweeping']["Mens"] ?? [];
     final wSweeping = _boathouse?['Oars']?['Sweeping']["Womens"] ?? [];
-    final sculling = _boathouse?['Oars']?['sculling'] ?? [];
+    final sculling = _boathouse?['Oars']?['Sculling'] ?? [];
 
 
     allOars.add(mSweeping);

@@ -124,7 +124,7 @@ class Ape{
           gender: gender, // You need to determine this based on genderCategory
           shellType: category == "Eights" ? ShellType.eight : category == "Fours" ? ShellType.four : category == "Singles" ? ShellType.single :category == "Eights" ? ShellType.eight : ShellType.double, // You need to determine this based on category
         );
-        newBoat.oars = allOars[0]; // assign appropriate oars
+        // newBoat.oars = boat.Shell ? allOars[0] : allOars[2]; // assign appropriate oars
         allBoats.add(newBoat);
     });
   });
