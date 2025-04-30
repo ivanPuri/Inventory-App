@@ -163,7 +163,7 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
           itemBuilder: (context, index) {
           final boat = input[index];
           return Card(
-                      margin: EdgeInsets.all(10),
+                      margin: EdgeInsets.all(9),
                       child: GestureDetector(
                         child: ListTile(
                           leading: boat.brand == "Vespoli" ? Image.asset("assets/vespoli.png")
@@ -173,9 +173,53 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
                           : boat.brand == "Empacher" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/empacher.png"))
                           : SizedBox(),
                           title: Text("${ boat.name ?? 'Null Name' }"),
-                          trailing: Text(boat.shellType == ShellType.eight ? "8+" : boat.shellType == ShellType.four ? "4+" : boat.shellType == ShellType.double ? "2x" : boat.shellType == ShellType.single ? "1x" : "Null Type"),
+                          trailing: Text(boat.shellType == ShellType.eight ? "8+" : boat.shellType == ShellType.four ? "4+" : boat.shellType == ShellType.double ? "2x" : boat.shellType == ShellType.single ? "1x" : "Null Type",
+                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                         ),
-                        onTap: (){}
+                        onTap: (){
+                          showModalBottomSheet(
+                            context: context,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+                            ),
+                            backgroundColor: Colors.white,
+                            builder: (BuildContext context) {
+                              return Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min, // Makes it wrap content height
+                                  children: [
+                                    SizedBox(
+                                      width: double.infinity,
+                                    ),
+                                    Image.asset("assets/carhart.png", height: 80),
+                                    SizedBox(height: 12),
+                                    Text(boat.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                                    Text("Brand: ${boat.brand!}", style: TextStyle(fontSize: 15),),
+                                    Text("Wrench Size: ${boat.wrenchSize!}", style: TextStyle(fontSize: 15),),
+                                    Text("Gender: ${boat.gender == Gender.mens ? "Mens" : "Womens"}", style: TextStyle(fontSize: 15),),
+                                    Text("Shell Size: ${boat.shellType == ShellType.eight ? "8+" : boat.shellType == ShellType.four ? "4+": boat.shellType == ShellType.double ? "2x" : "1x"}", style: TextStyle(fontSize: 15),),
+                                    Text("Riggers: ${boat.riggors == "" ? "N/A": boat.riggors}", style: TextStyle(fontSize: 15),),
+                                    Text("Oars: ${boat.oars}", style: TextStyle(fontSize: 15),),
+
+
+
+                                    SizedBox(height: 25),
+                                    ElevatedButton(
+                                      onPressed: () => Navigator.pop(context),
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Color(0xff003594),
+                                        foregroundColor: Colors.white,
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                                      ),
+                                      child: Text("Close"),
+                                    )
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        }
                       )
                        
                     );
@@ -213,7 +257,7 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
                             ),
 
 
-                            Text(" ${boat.wrenchSize ?? 'Null Wrench'}", style: TextStyle(fontSize: 8)), 
+                            Text(" ${boat.wrenchSize ?? 'Null Wrench'}", style: TextStyle(fontSize: 12)), 
                                                         
                           ],                      
                       )
