@@ -89,35 +89,6 @@ class Ape{
     }
   
 
-    // for (List<dynamic> list in oars) {
-    //   switch (index++) {
-    //     case 0:
-    //       for (final oar in list) {
-    //         Oar newOar = Oar(name: oar["name"], gender: Gender.mens , type: InventoryType.oar, location: LocationType.boatHouse, count: 1);
-    //         mensList.add(newOar);
-    //         inventoryAdd.add(newOar);
-    //       }
-    //       break;
-
-    //     case 1:
-    //     for (final oar in list) {
-    //         Oar newOar = Oar(name: oar["name"], gender: Gender.womens , type: InventoryType.oar, location: LocationType.boatHouse, count: 1);
-    //         womensList.add(newOar);
-    //         inventoryAdd.add(newOar);
-
-    //       }
-    //       break;
-
-    //     case 2:
-    //     for (final oar in list) {
-    //         Oar newOar = Oar(name: oar["name"], gender: Gender.smallboats , type: InventoryType.oar, location: LocationType.boatHouse, count: oar["SetCount"]);
-    //         sculling.add(newOar);
-    //         inventoryAdd.add(newOar);
-    //       }
-    //       break;
-    //   }
-    // }
-
     return [mensList, womensList, sculling];
 
   }
@@ -171,7 +142,8 @@ class Ape{
       if (key != "Riggors"){
         List<dynamic> list = dict[key]!;
         for (dynamic item in list){
-          CountItem newItem = CountItem(type: InventoryType.rigging, location: LocationType.boatHouse, count: item["Count"]);
+          CountItem newItem = CountItem(name: key, type: InventoryType.rigging, location: LocationType.boatHouse, count: item["Count"], brand: item["Brand"]);
+
           inventoryAdd.add(newItem);
         }
       }
@@ -306,5 +278,9 @@ class Ape{
   List<InventoryItem> getOars(){
     return countsByInventoryType["Oars"]!;
 
+  }
+
+  List<InventoryItem> getRigging(){
+    return countsByInventoryType["Rigging"]!;
   }
 }

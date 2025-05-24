@@ -3,6 +3,8 @@ import 'package:inventory/model/boat.dart';
 import 'package:inventory/model/inventory_item.dart';
 import 'package:inventory/service/ape_service.dart';
 
+// BOATS
+
 class Boats extends StatefulWidget {
   final Ape ape;
 
@@ -294,6 +296,11 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
   }
 }
 
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+
+// OARS
+
 class Oars extends StatefulWidget {
   final Ape ape;
 
@@ -313,6 +320,7 @@ class _OarsState extends State<Oars> {
     _loading = false;
   }
 
+  
 
   @override
   Widget build(BuildContext context) {
@@ -366,17 +374,80 @@ class _OarsState extends State<Oars> {
   }
 }
 
+
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+
+// RIGGERS
+
 class Riggers extends StatefulWidget {
-  const Riggers({super.key});
+  final Ape ape;
+
+  const Riggers({super.key, required this.ape});
 
   @override
   State<Riggers> createState() => _RiggersState();
 }
 
 class _RiggersState extends State<Riggers> {
+  bool _isList = true;
+  bool _loading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loading = false;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    if (_loading){
+       return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+
+          title: GestureDetector(
+            child: Center(
+              child: Text(
+                "Rigging",
+                style: TextStyle(color: Color(0xffFFB81C))
+              )
+            ),
+            onTap: () => {
+              // Go back to Home Page 
+            },
+          ),
+
+          backgroundColor: Color(0xff003594),
+          iconTheme: IconThemeData(
+            color: Color(0xffFFB81C),
+          ),
+
+          actions: [
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                //! Implement search functionality here
+              },
+            ),
+            IconButton(
+              icon: Icon(_isList ? Icons.grid_view_outlined : Icons.list),
+              onPressed: () {
+                setState(() {
+                  _isList = !_isList;
+                });
+              },
+            )
+          ],
+      ),
+
+      // Body
+      body: InventoryItemDisplay(items: widget.ape.getRigging(), isList: _isList,)
+      );
   }
 }
 // !----------------------------------------------------------------------
@@ -416,7 +487,86 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
     }
   }
   
+  void _oarModal(dynamic item){
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+      ),
+      backgroundColor: Colors.white,
+      builder: (BuildContext context){
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min, 
+            children: [
+              SizedBox(
+                width: double.infinity,
+              ),
+              Image.asset("assets/carhart.png", height: 80,),
+              SizedBox(height: 12),
+              Text(item.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Text("Name: ${item.name}", style: TextStyle(fontSize: 15),),
+              Text("Type: ${item.gender == Gender.smallboats ? "Sculling" : "Sweeping"}", style: TextStyle(fontSize: 15),),
+              Text(item.gender != Gender.smallboats ?  "Eight Count: ${item.count}" : "Pair Count: ${item.count}", style: TextStyle(fontSize: 15),),
+              
+              SizedBox(height: 25),
 
+              ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xff003594),
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                child: Text("Close"),
+              )
+            ],
+          ),
+        );
+      }
+    );
+  }
+
+  void _rigModal(dynamic item){
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+      ),
+      backgroundColor: Colors.white,
+      builder: (BuildContext context){
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min, 
+            children: [
+              SizedBox(
+                width: double.infinity,
+              ),
+              Image.asset("assets/carhart.png", height: 80,),
+              SizedBox(height: 12),
+              Text(item.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Text("Name: ${item.name}", style: TextStyle(fontSize: 15),),
+              Text("Inventory Count: ${item.count}", style: TextStyle(fontSize: 15),),
+              
+              SizedBox(height: 25),
+
+              ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xff003594),
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                child: Text("Close"),
+              )
+            ],
+          ),
+        );
+      }
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -429,6 +579,7 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
           final item = input[index];
           InventoryType inventoryType = item.type;
 
+          // Oar Display
           if (inventoryType == InventoryType.oar){
             return Card(
                       margin: EdgeInsets.all(10),
@@ -439,20 +590,37 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                           trailing: Text(item.gender == Gender.mens ? "Mens" : item.gender == Gender.womens ? "Womens" : "Sculling"),
                         ),
                         onTap: (){
-                          //  Add functionality
+                          _oarModal(item);
                         }
                       )
                        
                     );
           }
+   
           //Rest of inventoryTypes
-                        
+          else if (inventoryType == InventoryType.rigging){ {
+            return Card(
+              margin: EdgeInsets.all(10),
+              child: GestureDetector(
+                child: ListTile(
+                  leading: Image.asset("assets/carhart.png"),
+                  title: Text("${item.name}"),
+                  trailing: Text("${item.count}"),
+                ),
+                onTap: (){
+                  //!  Add functionality
+                  _rigModal(item);
+                }
+              )
+              );
+          }                
 
 
 
           }
-      )  
-
+  }
+  )  
+  
 
 
 
@@ -468,14 +636,13 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                   final item = input[index];
                   final inventoryType = item.type;
                   
-                   if (inventoryType == InventoryType.oar){
+                  if (inventoryType == InventoryType.oar){
                       return Card(
                                 margin: EdgeInsets.all(7),
                                 child: Center(
                                   child: GestureDetector(
                                     child: Column(
                                       children: [
-                                        // SizedBox(height: ),
                                         Image.asset("assets/carhart.png",
                                           height: 70,
                                           width: 70,
@@ -492,13 +659,39 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                                       ]      
                                   ),
                                     onTap: (){
-                                      //  Add functionality
+                                       _oarModal(item);
+
                                     },
                                 )
                                 
                                 )
                               );
-                    }
+                  }
+
+                  else if (inventoryType == InventoryType.rigging){
+                    return Card(
+                      margin: EdgeInsets.all(7),
+                      child: Center(
+                        child: GestureDetector(
+                          child: Column(
+                            children: [
+                              Image.asset("assets/carhart.png",
+                                height: 70,
+                                width: 70,
+                              ),
+                              Text(item.name, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+                              Text("${item.count}"),
+                            ]      
+                        ),
+                        onTap: (){
+                          _rigModal(item);
+                        },
+                      )
+                    )
+                  );
+                  }
+
+
                 }
               );
 
