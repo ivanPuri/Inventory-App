@@ -293,6 +293,6 @@ class Ape{
   }
 
   List<InventoryItem> getStorage(){
-    return countsByInventoryType["Maintenance"]!;
+    return countsByInventoryType["Storage"]!;
   }
 }

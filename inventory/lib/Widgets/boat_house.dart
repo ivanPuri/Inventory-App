@@ -1075,7 +1075,7 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                             ]      
                         ),
                         onTap: (){
-                          //!  Add functionality
+                          // No need for onTap functionality
                         },
                       )
                     )
