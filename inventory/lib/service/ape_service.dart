@@ -106,7 +106,7 @@ class Ape{
       Boat boat = boats[pairing]!;
       boat.riggors = label;
 
-      CountItem newRiggor = CountItem.name(type: InventoryType.rigging, location: LocationType.boatHouse, count: 1, name: label);
+      CountItem newRiggor = CountItem(type: InventoryType.rigging, location: LocationType.boatHouse, count: 1, name: label, pairing: pairing);
       inventoryAdd.add(newRiggor);
     }
     
@@ -166,7 +166,7 @@ class Ape{
         }
       }else{
         for (dynamic item in list){
-          CountItem newItem = CountItem.name(type: InventoryType.coxing, location: LocationType.boatHouse, count: item["Count"], name: item["Name"]);
+          CountItem newItem = CountItem.name(type: InventoryType.coxing, location: LocationType.boatHouse, count: item["Count"], name: item["Name"] + " Lights");
           inventoryAdd.add(newItem);
         }
 
@@ -203,13 +203,13 @@ class Ape{
       if (key == "BoatCovers"){
         for (dynamic item in list){
           // Add Pairing Logic
-          CountItem newItem = CountItem.name(type: InventoryType.storage, location: LocationType.boatHouse, count: 1, name: key);
+          CountItem newItem = CountItem.name(type: InventoryType.storage, location: LocationType.boatHouse, count: 1, name: key, pairing: item["Pairing"]);
           inventoryAdd.add(newItem);
         }
       }else{
         for (dynamic item in list){
           // Add Pairing Logic
-          CountItem newItem = CountItem.name(type: InventoryType.storage, location: LocationType.boatHouse, count: item["count"] ?? 0, name: key);
+          CountItem newItem = CountItem.name(type: InventoryType.storage, location: LocationType.boatHouse, count: item["Count"]!, name: key);
           inventoryAdd.add(newItem);
         }
       }
@@ -282,5 +282,17 @@ class Ape{
 
   List<InventoryItem> getRigging(){
     return countsByInventoryType["Rigging"]!;
+  }
+
+  List<InventoryItem> getCox(){
+    return countsByInventoryType["Cox"]!;
+  }
+
+  List<InventoryItem> getMaintenance(){
+    return countsByInventoryType["Maintenance"]!;
+  }
+
+  List<InventoryItem> getStorage(){
+    return countsByInventoryType["Maintenance"]!;
   }
 }

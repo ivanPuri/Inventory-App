@@ -3,6 +3,9 @@ import 'package:inventory/model/boat.dart';
 import 'package:inventory/model/inventory_item.dart';
 import 'package:inventory/service/ape_service.dart';
 
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+
 // BOATS
 
 class Boats extends StatefulWidget {
@@ -450,7 +453,241 @@ class _RiggersState extends State<Riggers> {
       );
   }
 }
-// !----------------------------------------------------------------------
+
+
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+
+// COXSWAIN
+
+class Cox extends StatefulWidget {
+  final Ape ape;
+
+  const Cox({super.key, required this.ape});
+
+  @override
+  State<Cox> createState() => _CoxState();
+}
+
+class _CoxState extends State<Cox> {
+  bool _isList = true;
+  bool _loading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loading = false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_loading){
+       return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+
+          title: GestureDetector(
+            child: Center(
+              child: Text(
+                "Cox Equipment",
+                style: TextStyle(color: Color(0xffFFB81C))
+              )
+            ),
+            onTap: () => {
+              // Go back to Home Page 
+            },
+          ),
+
+          backgroundColor: Color(0xff003594),
+          iconTheme: IconThemeData(
+            color: Color(0xffFFB81C),
+          ),
+
+          actions: [
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                //! Implement search functionality here
+              },
+            ),
+            IconButton(
+              icon: Icon(_isList ? Icons.grid_view_outlined : Icons.list),
+              onPressed: () {
+                setState(() {
+                  _isList = !_isList;
+                });
+              },
+            )
+          ],
+      ),
+
+      // Body
+      body: InventoryItemDisplay(items: widget.ape.getCox(), isList: _isList,)
+      );
+  }
+}
+
+
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+
+// MAINTENANCE
+
+class Maintenance extends StatefulWidget {
+  final Ape ape;
+  const Maintenance({super.key, required this.ape});
+
+  @override
+  State<Maintenance> createState() => _MaintenanceState();
+}
+
+class _MaintenanceState extends State<Maintenance> {
+  bool _isList = true;
+  bool _loading = true;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _loading = false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_loading){
+       return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+
+          title: GestureDetector(
+            child: Center(
+              child: Text(
+                "Maintenance",
+                style: TextStyle(color: Color(0xffFFB81C))
+              )
+            ),
+            onTap: () => {
+              // Go back to Home Page 
+            },
+          ),
+
+          backgroundColor: Color(0xff003594),
+          iconTheme: IconThemeData(
+            color: Color(0xffFFB81C),
+          ),
+
+          actions: [
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                //! Implement search functionality here
+              },
+            ),
+            IconButton(
+              icon: Icon(_isList ? Icons.grid_view_outlined : Icons.list),
+              onPressed: () {
+                setState(() {
+                  _isList = !_isList;
+                });
+              },
+            )
+          ],
+      ),
+
+      // Body
+      body: InventoryItemDisplay(items: widget.ape.getMaintenance(), isList: _isList,)
+      );
+  }
+}
+
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+
+// STORAGE
+
+class Storage extends StatefulWidget {
+  final Ape ape;
+  const Storage({super.key, required this.ape});
+
+  @override
+  State<Storage> createState() => _StorageState();
+}
+
+class _StorageState extends State<Storage> {
+  bool _isList = true;
+  bool _loading = true;
+
+
+    @override
+  void initState() {
+    super.initState();
+    _loading = false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_loading){
+       return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+
+          title: GestureDetector(
+            child: Center(
+              child: Text(
+                "Storage",
+                style: TextStyle(color: Color(0xffFFB81C))
+              )
+            ),
+            onTap: () => {
+              // Go back to Home Page 
+            },
+          ),
+
+          backgroundColor: Color(0xff003594),
+          iconTheme: IconThemeData(
+            color: Color(0xffFFB81C),
+          ),
+
+          actions: [
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                //! Implement search functionality here
+              },
+            ),
+            IconButton(
+              icon: Icon(_isList ? Icons.grid_view_outlined : Icons.list),
+              onPressed: () {
+                setState(() {
+                  _isList = !_isList;
+                });
+              },
+            )
+          ],
+      ),
+
+      // Body
+      body: InventoryItemDisplay(items: widget.ape.getStorage(), isList: _isList,)
+      );
+  }
+}
+
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+
+// INVENTORY ITEM DISPLAY
 
 class InventoryItemDisplay extends StatefulWidget {
   final bool isList;
@@ -461,8 +698,6 @@ class InventoryItemDisplay extends StatefulWidget {
   @override
   State<InventoryItemDisplay> createState() => _InventoryItemDisplayState();
 }
-
-// !----------------------------------------------------------------------
 
 class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
   late List<dynamic> input;
@@ -547,8 +782,11 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
               Image.asset("assets/carhart.png", height: 80,),
               SizedBox(height: 12),
               Text(item.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              Text("Name: ${item.name}", style: TextStyle(fontSize: 15),),
-              Text("Inventory Count: ${item.count}", style: TextStyle(fontSize: 15),),
+              if (item.brand != "" )
+                Text("Brand: ${item.brand}", style: TextStyle(fontSize: 15),),
+              if (item.pairing != "" )
+                Text("Pairing: ${item.pairing}", style: TextStyle(fontSize: 15),),
+              Text(item.brand != "" ? "Inventory Count: ${item.count}": "Eight Count: ${item.count}", style: TextStyle(fontSize: 15),),
               
               SizedBox(height: 25),
 
@@ -568,6 +806,45 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
     );
   }
 
+  void _coxModal(dynamic item){
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+      ),
+      backgroundColor: Colors.white,
+      builder: (BuildContext context){
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min, 
+            children: [
+              SizedBox(
+                width: double.infinity,
+              ),
+              Image.asset("assets/carhart.png", height: 80,),
+              SizedBox(height: 12),
+              Text(item.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Text("Name: ${item.name}", style: TextStyle(fontSize: 15),),
+              Text("Inventory Count: ${item.count}", style: TextStyle(fontSize: 15),),
+              SizedBox(height: 25),
+              ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xff003594),
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                child: Text("Close"),
+              )
+            ],
+          ),
+        );
+      }
+    );
+  }
+
+  
   @override
   Widget build(BuildContext context) {
     return  
@@ -598,7 +875,7 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
           }
    
           //Rest of inventoryTypes
-          else if (inventoryType == InventoryType.rigging){ {
+          else if (inventoryType == InventoryType.rigging){ 
             return Card(
               margin: EdgeInsets.all(10),
               child: GestureDetector(
@@ -612,12 +889,53 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                   _rigModal(item);
                 }
               )
-              );
-          }                
-
-
-
+            );
           }
+
+          else if (inventoryType == InventoryType.coxing){
+            return Card(
+              margin: EdgeInsets.all(10),
+              child: GestureDetector(
+                child: ListTile(
+                  leading: Image.asset("assets/carhart.png"),
+                  title: Text("${item.name}"),
+                  trailing: Text("${item.count}"),
+                ),
+                onTap: (){
+                  _coxModal(item);
+                }
+              )
+            );
+          }
+
+          else if (inventoryType == InventoryType.maintenance){
+            return Card(
+              margin: EdgeInsets.all(10),
+              child: GestureDetector(
+                child: ListTile(
+                  leading: Image.asset("assets/carhart.png"),
+                  title: Text("${item.name}"),
+                  trailing: Text("${item.count}"),
+                ),
+                // No need for onTap functionality
+              )
+            );
+          }
+
+          else if (inventoryType == InventoryType.storage){
+            return Card(
+              margin: EdgeInsets.all(10),
+              child: GestureDetector(
+                child: ListTile(
+                  leading: Image.asset("assets/carhart.png"),
+                  title: Text("${item.name}"),
+                  trailing: Text(item.name != "BoatCovers" ? "${item.count}" : "${item.pairing}"),
+                ),
+                // No need for onTap functionality
+              )
+            );
+          }
+
   }
   )  
   
@@ -679,8 +997,12 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                                 height: 70,
                                 width: 70,
                               ),
-                              Text(item.name, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
-                              Text("${item.count}"),
+                              Text(item.name, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+                              Text(item.brand != "" ? " ${item.brand}" : " ${item.name}", style: TextStyle(fontSize: 12), textAlign: TextAlign.center,),
+                              if (item.brand != "" )
+                                Text("${item.count}"),
+                                
+                              
                             ]      
                         ),
                         onTap: (){
@@ -691,7 +1013,74 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                   );
                   }
 
+                  else if (inventoryType == InventoryType.coxing){
+                    return Card(
+                      margin: EdgeInsets.all(7),
+                      child: Center(
+                        child: GestureDetector(
+                          child: Column(
+                            children: [
+                              Image.asset("assets/carhart.png",
+                                height: 70,
+                                width: 70,
+                              ),
+                              Text(item.name, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+                              Text(item.count.toString()),              
+                            ]      
+                        ),
+                        onTap: (){
+                          _coxModal(item);
+                        },
+                      )
+                    )
+                  );
+                  }
 
+                  else if (inventoryType == InventoryType.maintenance){
+                    return Card(
+                      margin: EdgeInsets.all(7),
+                      child: Center(
+                        child: GestureDetector(
+                          child: Column(
+                            children: [
+                              Image.asset("assets/carhart.png",
+                                height: 70,
+                                width: 70,
+                              ),
+                              Text(item.name, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+                              Text(item.count.toString()),              
+                            ]      
+                        ),
+                        onTap: (){
+                          //!  Add functionality
+                        },
+                      )
+                    )
+                  );
+                  }
+
+                  else if (inventoryType == InventoryType.storage){
+                    return Card(
+                      margin: EdgeInsets.all(7),
+                      child: Center(
+                        child: GestureDetector(
+                          child: Column(
+                            children: [
+                              Image.asset("assets/carhart.png",
+                                height: 70,
+                                width: 70,
+                              ),
+                              Text(item.name, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+                              Text(item.name != "BoatCovers" ? "${item.count}" : "${item.pairing}"),
+                            ]      
+                        ),
+                        onTap: (){
+                          //!  Add functionality
+                        },
+                      )
+                    )
+                  );
+                  }
                 }
               );
 

@@ -280,10 +280,10 @@
             "Count":19
           }
         ],
-        "SpeedCoach":[{
+        "Speed Coach":[{
           "Count": 6
         }],
-        "CoxBox":[{
+        "Cox Box":[{
           "Count": 11
         }],
         "Headsets":[{
@@ -306,10 +306,10 @@
         }
       ],
       "Slings":[{
-        "count": 16
+        "Count": 16
       }],
       "Straps":[{
-        "count": 31
+        "Count": 31
       }],
       "LowBoys":[{
         "Count": 4

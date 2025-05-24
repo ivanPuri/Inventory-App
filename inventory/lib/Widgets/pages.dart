@@ -21,8 +21,8 @@ class Boathouse extends StatelessWidget {
         _buildGridItem(context, 'Boats', Boats(ape: ape)),
         _buildGridItem(context, 'Oars/Sculls', Oars(ape: ape)),
         _buildGridItem(context, 'Rigging', Riggers(ape: ape)), 
-        _buildGridItem(context, 'Maintenance', Placeholder()),
-        _buildGridItem(context, 'Cox Equipment', Placeholder()),
+        _buildGridItem(context, 'Maintenance', Maintenance(ape: ape)),
+        _buildGridItem(context, 'Cox Equipment', Cox(ape: ape)),
         _buildGridItem(context, 'Storage', Placeholder()),
       ],
     );
