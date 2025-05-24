@@ -28,6 +28,7 @@ class Ape{
     _parseMaintenance();
     _parseStorage();
     _parseErgRoom();
+    _parseOars();
   }
   
   _parseBoats() {
@@ -48,7 +49,6 @@ class Ape{
   }
 
   List<List<Oar>> _parseOars() {
-    int index = 0;
 
     final List<dynamic> oars = _service.getOars();
     final List<Oar> mensList = [];
@@ -57,36 +57,66 @@ class Ape{
     final List<InventoryItem> inventoryAdd = [];
     countsByInventoryType["Oars"] = inventoryAdd;
 
-  
-
-    for (List<dynamic> list in oars) {
-      switch (index++) {
+    for (int i = 0; i < oars.length; i++) {
+      
+      switch (i) {
         case 0:
-          for (final oar in list) {
+          for (final oar in oars[i]) {
             Oar newOar = Oar(name: oar["name"], gender: Gender.mens , type: InventoryType.oar, location: LocationType.boatHouse, count: 1);
-            mensList.add(newOar);
             inventoryAdd.add(newOar);
+            mensList.add(newOar);
           }
           break;
 
         case 1:
-        for (final oar in list) {
+        for (final oar in oars[i]) {
             Oar newOar = Oar(name: oar["name"], gender: Gender.womens , type: InventoryType.oar, location: LocationType.boatHouse, count: 1);
-            womensList.add(newOar);
             inventoryAdd.add(newOar);
+            womensList.add(newOar);
 
           }
           break;
 
         case 2:
-        for (final oar in list) {
+        for (final oar in oars[i]) {
             Oar newOar = Oar(name: oar["name"], gender: Gender.smallboats , type: InventoryType.oar, location: LocationType.boatHouse, count: oar["SetCount"]);
-            sculling.add(newOar);
             inventoryAdd.add(newOar);
+            sculling.add(newOar);
           }
           break;
       }
+      
     }
+  
+
+    // for (List<dynamic> list in oars) {
+    //   switch (index++) {
+    //     case 0:
+    //       for (final oar in list) {
+    //         Oar newOar = Oar(name: oar["name"], gender: Gender.mens , type: InventoryType.oar, location: LocationType.boatHouse, count: 1);
+    //         mensList.add(newOar);
+    //         inventoryAdd.add(newOar);
+    //       }
+    //       break;
+
+    //     case 1:
+    //     for (final oar in list) {
+    //         Oar newOar = Oar(name: oar["name"], gender: Gender.womens , type: InventoryType.oar, location: LocationType.boatHouse, count: 1);
+    //         womensList.add(newOar);
+    //         inventoryAdd.add(newOar);
+
+    //       }
+    //       break;
+
+    //     case 2:
+    //     for (final oar in list) {
+    //         Oar newOar = Oar(name: oar["name"], gender: Gender.smallboats , type: InventoryType.oar, location: LocationType.boatHouse, count: oar["SetCount"]);
+    //         sculling.add(newOar);
+    //         inventoryAdd.add(newOar);
+    //       }
+    //       break;
+    //   }
+    // }
 
     return [mensList, womensList, sculling];
 
@@ -121,10 +151,10 @@ class Ape{
           brand: boat['Brand'],
           name: boat['name'],
           wrenchSize: boat['Wrench-Size'],
-          gender: gender, // You need to determine this based on genderCategory
-          shellType: category == "Eights" ? ShellType.eight : category == "Fours" ? ShellType.four : category == "Singles" ? ShellType.single :category == "Eights" ? ShellType.eight : ShellType.double, // You need to determine this based on category
+          gender: gender, 
+          shellType: category == "Eights" ? ShellType.eight : category == "Fours" ? ShellType.four : category == "Singles" ? ShellType.single :category == "Eights" ? ShellType.eight : ShellType.double, 
+          oars: gender == Gender.mens ? allOars[0]: gender == Gender.womens ? allOars[1]: allOars[2],
         );
-        // newBoat.oars = boat.Shell ? allOars[0] : allOars[2]; // assign appropriate oars
         allBoats.add(newBoat);
     });
   });

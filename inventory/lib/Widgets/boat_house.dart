@@ -152,6 +152,66 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
     }
   }
 
+  void _showBoatDetails(BuildContext context, Boat boat) {
+    final oars = boat.oars.map((oar) => oar.toString()).toList();
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+      ),
+      backgroundColor: Colors.white,
+      builder: (BuildContext context) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min, 
+            children: [
+              SizedBox(
+                width: double.infinity,
+              ),
+              boat.brand == "Vespoli" ? Image.asset("assets/vespoli.png", height: 80,)
+                          : boat.brand == "King" ? Image.asset("assets/king.png", height: 80,)
+                          : boat.brand == "Wintech" ? Image.asset("assets/wintech.png", height: 80,)
+                          : boat.brand == "Kaschper" ? Image.asset("assets/kaschper.jpeg", height: 80,)
+                          : boat.brand == "Empacher" ? SizedBox(height: 80, child: Image.asset("assets/empacher.png"))
+                          : SizedBox(),
+              SizedBox(height: 12),
+              Text(boat.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Text("Brand: ${boat.brand}", style: TextStyle(fontSize: 15),),
+              Text("Wrench Size: ${boat.wrenchSize}", style: TextStyle(fontSize: 15),),
+              Text("Gender: ${boat.gender == Gender.mens ? "Mens" : "Womens"}", style: TextStyle(fontSize: 15),),
+              Text("Shell Size: ${boat.shellType == ShellType.eight ? "8+" : boat.shellType == ShellType.four ? "4+": boat.shellType == ShellType.double ? "2x" : "1x"}", style: TextStyle(fontSize: 15),),
+              if (boat.shellType == ShellType.eight)
+                Text("Riggers: ${boat.riggors == "" ? "N/A": boat.riggors}", style: TextStyle(fontSize: 15),),
+              Text("Oars: ", style: TextStyle(fontSize: 15),),
+              
+              Column(
+                children: oars.map<Widget>((oar) {
+                  return Text(oar);
+                }).toList(),
+              ),
+
+
+
+
+              SizedBox(height: 25),
+              ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xff003594),
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                child: Text("Close"),
+              )
+            ],
+          ),
+        );
+      },
+    );
+}
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -162,8 +222,9 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
           itemCount: input.length,
           itemBuilder: (context, index) {
           final boat = input[index];
+          final oars = boat.oars.map((oar) => oar.toString()).toList();
           return Card(
-                      margin: EdgeInsets.all(9),
+                      margin: EdgeInsets.only(right: 7, left: 7, top: 5, bottom: 5),
                       child: GestureDetector(
                         child: ListTile(
                           leading: boat.brand == "Vespoli" ? Image.asset("assets/vespoli.png")
@@ -177,48 +238,7 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
                             style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                         ),
                         onTap: (){
-                          showModalBottomSheet(
-                            context: context,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
-                            ),
-                            backgroundColor: Colors.white,
-                            builder: (BuildContext context) {
-                              return Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min, // Makes it wrap content height
-                                  children: [
-                                    SizedBox(
-                                      width: double.infinity,
-                                    ),
-                                    Image.asset("assets/carhart.png", height: 80),
-                                    SizedBox(height: 12),
-                                    Text(boat.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                                    Text("Brand: ${boat.brand!}", style: TextStyle(fontSize: 15),),
-                                    Text("Wrench Size: ${boat.wrenchSize!}", style: TextStyle(fontSize: 15),),
-                                    Text("Gender: ${boat.gender == Gender.mens ? "Mens" : "Womens"}", style: TextStyle(fontSize: 15),),
-                                    Text("Shell Size: ${boat.shellType == ShellType.eight ? "8+" : boat.shellType == ShellType.four ? "4+": boat.shellType == ShellType.double ? "2x" : "1x"}", style: TextStyle(fontSize: 15),),
-                                    Text("Riggers: ${boat.riggors == "" ? "N/A": boat.riggors}", style: TextStyle(fontSize: 15),),
-                                    Text("Oars: ${boat.oars}", style: TextStyle(fontSize: 15),),
-
-
-
-                                    SizedBox(height: 25),
-                                    ElevatedButton(
-                                      onPressed: () => Navigator.pop(context),
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Color(0xff003594),
-                                        foregroundColor: Colors.white,
-                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                                      ),
-                                      child: Text("Close"),
-                                    )
-                                  ],
-                                ),
-                              );
-                            },
-                          );
+                          _showBoatDetails(context, boat);
                         }
                       )
                        
@@ -241,27 +261,31 @@ class _BoatsDisplayState extends State<BoatsDisplay> {
                   return Card(
                     margin: EdgeInsets.all(7),
                     child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            boat.brand == "Vespoli" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/vespoli.png"))
-                          : boat.brand == "King" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/king.png"))
-                          : boat.brand == "Wintech" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/wintech.png"))
-                          : boat.brand == "Kaschper" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/kaschper.jpeg"))
-                          : boat.brand == "Empacher" ? SizedBox(height: 50, width: 90, child: Image.asset("assets/empacher.png"))
-                          : SizedBox(),                      
-                            Text("${ boat.name ?? 'Null Name'}",
-                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
-                            Text(style: TextStyle(fontSize: 15),
-                            boat.shellType == ShellType.eight ? "8+" : boat.shellType == ShellType.four ? "4+" : boat.shellType == ShellType.double ? "2x" : boat.shellType == ShellType.single ? "1x" : "Null Type"
-                            ),
+                        child:GestureDetector(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              boat.brand == "Vespoli" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/vespoli.png"))
+                            : boat.brand == "King" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/king.png"))
+                            : boat.brand == "Wintech" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/wintech.png"))
+                            : boat.brand == "Kaschper" ? SizedBox(height: 50, width: 50, child: Image.asset("assets/kaschper.jpeg"))
+                            : boat.brand == "Empacher" ? SizedBox(height: 50, width: 90, child: Image.asset("assets/empacher.png"))
+                            : SizedBox(),                      
+                              Text("${ boat.name ?? 'Null Name'}",
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+                              Text(style: TextStyle(fontSize: 15),
+                              boat.shellType == ShellType.eight ? "8+" : boat.shellType == ShellType.four ? "4+" : boat.shellType == ShellType.double ? "2x" : boat.shellType == ShellType.single ? "1x" : "Null Type"
+                              ),
 
 
-                            Text(" ${boat.wrenchSize ?? 'Null Wrench'}", style: TextStyle(fontSize: 12)), 
-                                                        
-                          ],                      
-                      )
-                    )                  
+                              Text(" ${boat.wrenchSize ?? 'Null Wrench'}", style: TextStyle(fontSize: 12)), 
+                                                          
+                            ],                      
+                          ),
+                        onTap: (){
+                          _showBoatDetails(context, boat);} 
+                        ),
+                    ),               
                   );
                 }
               );
@@ -342,6 +366,19 @@ class _OarsState extends State<Oars> {
   }
 }
 
+class Riggers extends StatefulWidget {
+  const Riggers({super.key});
+
+  @override
+  State<Riggers> createState() => _RiggersState();
+}
+
+class _RiggersState extends State<Riggers> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
 // !----------------------------------------------------------------------
 
 class InventoryItemDisplay extends StatefulWidget {
@@ -407,8 +444,6 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                       )
                        
                     );
-          }else{
-            return Text("Shiiiii man");
           }
           //Rest of inventoryTypes
                         
@@ -448,7 +483,7 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                                         Text(item.name,
                                           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                                         Text(
-                                          item.gender == Gender.mens ? "Mens" : item.gender == Gender.womens ? "Womens" : "SmallBoats"
+                                          item.gender == Gender.mens ? "Mens" : item.gender == Gender.womens ? "Womens" : "Small Boats"
                                         ),
                                         Text(
                                           (item.gender == Gender.mens || item.gender == Gender.womens) ? "Sweeping" : "Sculling"

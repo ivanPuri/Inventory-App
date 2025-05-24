@@ -32,6 +32,7 @@ class Boat extends InventoryItem {
     // TODO: implement toMap
     throw UnimplementedError();
   }
+  
  
 
 

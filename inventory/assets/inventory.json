@@ -156,7 +156,7 @@
       "Sweeping": {
         "Mens": [
           {
-          "name":"Orange Skinnies"
+            "name":"Orange Skinnies"
           },
           {
             "name":"Green Handles"
@@ -167,7 +167,7 @@
       ],
         "Womens": [
           {
-          "name":"Blue Grandles"
+            "name":"Blue Grandles"
           },
           {
             "name":"Pink Grandles"
@@ -189,8 +189,8 @@
         
       "Sculling":[
         {
-        "name":"White Blade",
-        "SetCount": 5
+          "name":"White Blade",
+          "SetCount": 5
         },
         {
           "name":"Yellow Blade",

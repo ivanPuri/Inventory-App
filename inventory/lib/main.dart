@@ -6,7 +6,7 @@ import 'package:inventory/service/inventory_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-Future<void> main() async {
+main() {
   runApp(login()); 
 }
 

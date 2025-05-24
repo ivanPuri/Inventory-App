@@ -19,6 +19,11 @@ class Oar extends CountItem{
     // TODO: implement toMap
     throw UnimplementedError();
   }
+
+  @override
+  String toString() {
+    return name;
+  }
   
 
 
