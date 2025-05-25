@@ -27,7 +27,8 @@ class Ape{
     _parseCox();
     _parseMaintenance();
     _parseStorage();
-    _parseErgRoom();
+    _parseConcept2();
+    _parseRP3();
     _parseOars();
   }
   
@@ -252,6 +253,23 @@ class Ape{
 
     for(String key in keys){
       if (key == "C2" || key == "Berg"){
+        Map<String,dynamic> list = dict[key]!;
+        CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: list["Count"], name: key);
+        inventoryAdd.add(newItem);
+        
+      }
+    }
+
+  }
+
+  _parseRP3(){
+    final Map<String,dynamic> dict = _service.getErgRoom()!;
+    final keys = dict.keys;
+    final List<InventoryItem> inventoryAdd = [];
+    countsByInventoryType["RP3"] = inventoryAdd;
+
+    for(String key in keys){
+      if (key == "RP3"){
         List<dynamic> list = dict[key]!;
         for (dynamic item in list){
           CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: item["Count"], name: key);
@@ -259,7 +277,24 @@ class Ape{
         }
       }
     }
+  }
 
+  _parseWeights(){
+    final Map<String,dynamic> dict = _service.getErgRoom()!;
+    final keys = dict.keys;
+    final List<InventoryItem> inventoryAdd = [];
+    countsByInventoryType["Weights"] = inventoryAdd;
+
+    for(String key in keys){
+      if (key == "Weights"){
+        Map<String, dynamic> weightDict = dict[key]!;
+        final weightkeys = weightDict.keys;
+        for (String weightKey in weightkeys){
+          CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: weightDict[weightKey]["Count"], name: weightKey);
+          inventoryAdd.add(newItem);
+        }
+      }
+    }
   }
 
   List<Boat> getMensBoats(){
