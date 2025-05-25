@@ -29,6 +29,7 @@ class Ape{
     _parseStorage();
     _parseConcept2();
     _parseRP3();
+    _parseWeights();
     _parseOars();
   }
   
@@ -271,11 +272,10 @@ class Ape{
 
     for(String key in keys){
       if (key == "RP3"){
-        List<dynamic> list = dict[key]!;
-        for (dynamic item in list){
-          CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: item["Count"], name: key);
-          inventoryAdd.add(newItem);
-        }
+        Map<String,dynamic> list = dict[key]!;
+        CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: list["Count"], name: key);
+        inventoryAdd.add(newItem);
+        
       }
     }
   }
