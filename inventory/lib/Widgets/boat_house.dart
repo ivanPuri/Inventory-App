@@ -935,6 +935,7 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
               )
             );
           }
+          return null;
 
   }
   )  
@@ -1081,6 +1082,7 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                     )
                   );
                   }
+                  return null;
                 }
               );
 

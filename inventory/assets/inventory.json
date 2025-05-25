@@ -322,21 +322,26 @@
     "Bergs": {
       "Count": 3
     },
+    
     "C2": {
       "Count ": 3
     },
+
     "RP3": {
       "Count ": 3
     },
+
     "Weights": [
       {
       "Weight":"5 lb",
       "Count": 4
       }
     ],
+
     "Bars": {
       "Count": 5
     },
+
     "Tablets": {
       "Count": 5
     }

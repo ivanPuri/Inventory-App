@@ -180,7 +180,7 @@ class Ape{
     final List<InventoryItem> inventoryAdd = [];
     countsByInventoryType["Maintenance"] = inventoryAdd;
 
-    for(String key in keys){;
+    for(String key in keys){
       if(key == "10"){
           CountItem newItem = CountItem.name(type: InventoryType.maintenance, location: LocationType.boatHouse, count: dict[key]!, name: "10mm Wrench");
           inventoryAdd.add(newItem);
@@ -244,6 +244,24 @@ class Ape{
     
   }
 
+  _parseConcept2(){
+    final Map<String,dynamic> dict = _service.getErgRoom()!;
+    final keys = dict.keys;
+    final List<InventoryItem> inventoryAdd = [];
+    countsByInventoryType["C2"] = inventoryAdd;
+
+    for(String key in keys){
+      if (key == "C2" || key == "Berg"){
+        List<dynamic> list = dict[key]!;
+        for (dynamic item in list){
+          CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: item["Count"], name: key);
+          inventoryAdd.add(newItem);
+        }
+      }
+    }
+
+  }
+
   List<Boat> getMensBoats(){
     List<Boat> mensBoats = [];
     final keys = boats.keys;
@@ -295,4 +313,9 @@ class Ape{
   List<InventoryItem> getStorage(){
     return countsByInventoryType["Storage"]!;
   }
+
+  List<InventoryItem> getC2(){
+    return countsByInventoryType["ErgRoom"]!;
+  }
+
 }
