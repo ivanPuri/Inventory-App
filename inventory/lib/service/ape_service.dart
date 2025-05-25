@@ -255,7 +255,6 @@ class Ape{
     for(String key in keys){
       if (key == "C2" || key == "Berg"){
         Map<String,dynamic> list = dict[key]!;
-        print(list["Count"].runtimeType);
         CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: list["Count"], name: key);
         inventoryAdd.add(newItem);
         
@@ -273,6 +272,8 @@ class Ape{
     for(String key in keys){
       if (key == "RP3"){
         Map<String,dynamic> list = dict[key]!;
+        print(list["Count"].runtimeType);
+
         CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: list["Count"], name: key);
         inventoryAdd.add(newItem);
         
