@@ -272,7 +272,6 @@ class Ape{
     for(String key in keys){
       if (key == "RP3"){
         Map<String,dynamic> list = dict[key]!;
-        print(list["Count"].runtimeType);
 
         CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: list["Count"], name: key);
         inventoryAdd.add(newItem);
@@ -289,10 +288,10 @@ class Ape{
 
     for(String key in keys){
       if (key == "Weights"){
-        Map<String, dynamic> weightDict = dict[key]!;
-        final weightkeys = weightDict.keys;
-        for (String weightKey in weightkeys){
-          CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: weightDict[weightKey]["Count"], name: weightKey);
+        List<dynamic> list = dict[key]!;
+        
+        for (Map<String,dynamic> weight in list){
+          CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: weight["Count"], name: weight["Weight"]);
           inventoryAdd.add(newItem);
         }
       }
