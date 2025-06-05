@@ -874,7 +874,7 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                     );
           }
    
-          //Rest of inventoryTypes
+          //Rigging Display
           else if (inventoryType == InventoryType.rigging){ 
             return Card(
               margin: EdgeInsets.all(10),
@@ -892,6 +892,7 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
             );
           }
 
+          // Coxswain Display
           else if (inventoryType == InventoryType.coxing){
             return Card(
               margin: EdgeInsets.all(10),
@@ -908,6 +909,7 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
             );
           }
 
+          // Maintenance Display
           else if (inventoryType == InventoryType.maintenance){
             return Card(
               margin: EdgeInsets.all(10),
@@ -922,6 +924,7 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
             );
           }
 
+          // Storage Display
           else if (inventoryType == InventoryType.storage){
             return Card(
               margin: EdgeInsets.all(10),
@@ -935,8 +938,8 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
               )
             );
           }
-          return null;
 
+          return null;
   }
   )  
   
@@ -955,6 +958,7 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                   final item = input[index];
                   final inventoryType = item.type;
                   
+                  // Oar Display
                   if (inventoryType == InventoryType.oar){
                       return Card(
                                 margin: EdgeInsets.all(7),
@@ -987,6 +991,7 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                               );
                   }
 
+                  // Rigging Display
                   else if (inventoryType == InventoryType.rigging){
                     return Card(
                       margin: EdgeInsets.all(7),
@@ -1014,6 +1019,7 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                   );
                   }
 
+                  // Coxswain Display
                   else if (inventoryType == InventoryType.coxing){
                     return Card(
                       margin: EdgeInsets.all(7),
@@ -1037,6 +1043,7 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                   );
                   }
 
+                  // Maintenance Display
                   else if (inventoryType == InventoryType.maintenance){
                     return Card(
                       margin: EdgeInsets.all(7),
@@ -1060,6 +1067,7 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                   );
                   }
 
+                  // Storage Display
                   else if (inventoryType == InventoryType.storage){
                     return Card(
                       margin: EdgeInsets.all(7),
@@ -1082,6 +1090,8 @@ class _InventoryItemDisplayState extends State<InventoryItemDisplay> {
                     )
                   );
                   }
+
+                  // If no inventory type matches, return null
                   return null;
                 }
               );

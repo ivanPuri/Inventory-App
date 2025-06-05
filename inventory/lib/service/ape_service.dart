@@ -30,7 +30,8 @@ class Ape{
     _parseConcept2();
     _parseRP3();
     _parseWeights();
-    _parseOars();
+    _parseBars();
+    _parseTablet();
   }
   
   _parseBoats() {
@@ -220,32 +221,6 @@ class Ape{
 
   } 
 
-  _parseErgRoom(){
-    final Map<String, dynamic> dict = _service.getErgRoom()!;
-    final keys = dict.keys;
-    final List<InventoryItem> inventoryAdd = [];
-    countsByInventoryType["ErgRoom"] = inventoryAdd; 
-
-    for (String key in keys){
-      if (key != "Weights"){
-        Map<String,dynamic> item = dict[key]!;
-        CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: item["count"]?? 0 , name: key); 
-        inventoryAdd.add(newItem);
-      }else{
-        List<dynamic> item = dict[key]!;
-        for (dynamic weight in item){
-          String lb = weight["Weight"];
-          CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: weight["count"] ?? 0, name: "$lb lb plate");
-          inventoryAdd.add(newItem);
-        }
-        
-      }
-
-
-    }
-    
-  }
-
   _parseConcept2(){
     final Map<String,dynamic> dict = _service.getErgRoom()!;
     final keys = dict.keys;
@@ -255,7 +230,7 @@ class Ape{
     for(String key in keys){
       if (key == "C2" || key == "Berg"){
         Map<String,dynamic> list = dict[key]!;
-        CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: list["Count"], name: key);
+        CountItem newItem = CountItem.name(type: InventoryType.c2, location: LocationType.ergRoom, count: list["Count"], name: key);
         inventoryAdd.add(newItem);
         
       }
@@ -273,7 +248,7 @@ class Ape{
       if (key == "RP3"){
         Map<String,dynamic> list = dict[key]!;
 
-        CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: list["Count"], name: key);
+        CountItem newItem = CountItem.name(type: InventoryType.rp3, location: LocationType.ergRoom, count: list["Count"], name: key);
         inventoryAdd.add(newItem);
         
       }
@@ -291,10 +266,48 @@ class Ape{
         List<dynamic> list = dict[key]!;
         
         for (Map<String,dynamic> weight in list){
-          CountItem newItem = CountItem.name(type: InventoryType.ergRoom, location: LocationType.ergRoom, count: weight["Count"], name: weight["Weight"]);
+          CountItem newItem = CountItem.name(type: InventoryType.weights, location: LocationType.ergRoom, count: weight["Count"], name: weight["Weight"]);
           inventoryAdd.add(newItem);
         }
       }
+    }
+  }
+
+  _parseBars(){
+    final Map<String,dynamic> dict = _service.getErgRoom()!;
+    final keys = dict.keys;
+    final List<InventoryItem> inventoryAdd = [];
+    countsByInventoryType["Bars"] = inventoryAdd;
+
+    for (String key in keys) {
+      if (key == "Bars") {
+        List<dynamic> list = dict[key]!;
+        
+        for (Map<String,dynamic> bar in list){
+          CountItem newItem = CountItem.name(type: InventoryType.weights, location: LocationType.ergRoom, count: bar["Count"], name: bar["Size"]);
+          inventoryAdd.add(newItem);
+        }
+      }
+      
+    }
+  }
+
+  _parseTablet(){
+    final Map<String,dynamic> dict = _service.getErgRoom()!;
+    final keys = dict.keys;
+    final List<InventoryItem> inventoryAdd = [];
+    countsByInventoryType["Tablet"] = inventoryAdd;
+
+    for (String key in keys) {
+      if (key == "Tablet") {
+        List<dynamic> list = dict[key]!;
+        
+        for (Map<String,dynamic> tablet in list){
+          CountItem newItem = CountItem.name(type: InventoryType.tablet, location: LocationType.ergRoom, count: tablet["Count"], name: key);
+          inventoryAdd.add(newItem);
+        }
+      }
+      
     }
   }
 
@@ -351,7 +364,23 @@ class Ape{
   }
 
   List<InventoryItem> getC2(){
-    return countsByInventoryType["ErgRoom"]!;
+    return countsByInventoryType["c2"]!;
+  }
+
+  List<InventoryItem> getRP3(){
+    return countsByInventoryType["rp3"]!;
+  }
+
+  List<InventoryItem> getWeights(){
+    return countsByInventoryType["Weights"]!;
+  }
+
+  List<InventoryItem> getTablet(){
+    return countsByInventoryType["Tablet"]!;
+  }
+
+  List<InventoryItem> getBars(){
+    return countsByInventoryType["Bars"]!;
   }
 
 }

@@ -338,9 +338,16 @@
       }
     ],
 
-    "Bars": {
-      "Count": 5
-    },
+    "Bars": [
+      {
+        "Size": "Big",
+        "Count": 2
+      },
+      {
+        "Size": "Small",
+        "Count": 3
+      }
+    ],
 
     "Tablets": {
       "Count": 5
