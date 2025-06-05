@@ -364,11 +364,11 @@ class Ape{
   }
 
   List<InventoryItem> getC2(){
-    return countsByInventoryType["c2"]!;
+    return countsByInventoryType["C2"]!;
   }
 
   List<InventoryItem> getRP3(){
-    return countsByInventoryType["rp3"]!;
+    return countsByInventoryType["RP3"]!;
   }
 
   List<InventoryItem> getWeights(){

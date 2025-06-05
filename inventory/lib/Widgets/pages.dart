@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inventory/Widgets/bellefield.dart';
 import 'package:inventory/Widgets/boat_house.dart';
 import 'package:inventory/service/ape_service.dart';
 
@@ -55,7 +56,10 @@ class Boathouse extends StatelessWidget {
 }
 
 class Bellefield extends StatelessWidget {
-  const Bellefield({super.key});
+  final Ape ape;
+
+  const Bellefield({super.key,required this.ape});
+
 
   @override
   Widget build(BuildContext context) {
@@ -65,10 +69,12 @@ class Bellefield extends StatelessWidget {
       crossAxisSpacing: 10,
       mainAxisSpacing: 10,
       children: [
-        _buildGridItem(context, 'Concept2', Placeholder()),
-        _buildGridItem(context, 'RP3', Placeholder()),
-        _buildGridItem(context, 'Lifting', Placeholder()),
-        _buildGridItem(context, 'Technology', Placeholder()),
+        _buildGridItem(context, 'Concept2', C2(ape: ape)),
+        _buildGridItem(context, 'RP3', RP3(ape: ape)),
+        _buildGridItem(context, 'Weights', Weights(ape: ape)),
+        _buildGridItem(context, 'Bars', Bars(ape: ape)),
+        _buildGridItem(context, 'Tablets', Tablet(ape: ape)),
+
       ],
     );
   }

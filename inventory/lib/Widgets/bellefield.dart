@@ -522,10 +522,48 @@ class _BelfDisplayState extends State<BelfDisplay> {
               SizedBox(
                 width: double.infinity,
               ),
-              Image.asset("assets/ergdata_icon.png", height: 80,),
+              Image.asset("assets/pitt.png", height: 80,),
               SizedBox(height: 12),
               Text(item.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               Text("Name: ${item.name}", style: TextStyle(fontSize: 15),),
+              Text("Inventory Count: ${item.count}", style: TextStyle(fontSize: 15),),
+              SizedBox(height: 25),
+              ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xff003594),
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                child: Text("Close"),
+              )
+            ],
+          ),
+        );
+      }
+    );
+  }
+
+  void _barModal(dynamic item){
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+      ),
+      backgroundColor: Colors.white,
+      builder: (BuildContext context){
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min, 
+            children: [
+              SizedBox(
+                width: double.infinity,
+              ),
+              Image.asset("assets/pitt.png", height: 80,),
+              SizedBox(height: 12),
+              Text(item.name, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Text("Size: ${item.name}", style: TextStyle(fontSize: 15),),
               Text("Inventory Count: ${item.count}", style: TextStyle(fontSize: 15),),
               SizedBox(height: 25),
               ElevatedButton(
@@ -620,7 +658,10 @@ class _BelfDisplayState extends State<BelfDisplay> {
                           leading: Image.asset("assets/pitt.png"),
                           title: Text("Size: ${item.name}"),
                           trailing: Text("Count: ${item.count}"),
-                        )
+                        ),
+                        onTap: (){
+                          _barModal(item);
+                        }
                       )
                     );
           }      

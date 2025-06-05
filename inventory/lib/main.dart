@@ -67,7 +67,7 @@ class _HomepageState extends State<Homepage> {
     _pages = [
       Boathouse(ape: ape), 
       Center(child: Text('Search Page')),
-      Bellefield(),
+      Bellefield(ape: ape),
     ];
     initialised = true; 
   });
