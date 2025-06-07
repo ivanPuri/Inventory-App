@@ -296,20 +296,18 @@ class Ape{
     final Map<String,dynamic> dict = _service.getErgRoom()!;
     final keys = dict.keys;
     final List<InventoryItem> inventoryAdd = [];
-    countsByInventoryType["Tablet"] = inventoryAdd;
+    countsByInventoryType["Tablets"] = inventoryAdd;
 
     for (String key in keys) {
-      if (key == "Tablet") {
-        List<dynamic> list = dict[key]!;
-        
-        for (Map<String,dynamic> tablet in list){
+      if (key == "Tablets") {
+        Map<String, dynamic> tablet = dict[key]!;
           CountItem newItem = CountItem.name(type: InventoryType.tablet, location: LocationType.ergRoom, count: tablet["Count"], name: key);
           inventoryAdd.add(newItem);
         }
       }
       
     }
-  }
+  
 
   List<Boat> getMensBoats(){
     List<Boat> mensBoats = [];
@@ -376,7 +374,7 @@ class Ape{
   }
 
   List<InventoryItem> getTablet(){
-    return countsByInventoryType["Tablet"]!;
+    return countsByInventoryType["Tablets"]!;
   }
 
   List<InventoryItem> getBars(){
