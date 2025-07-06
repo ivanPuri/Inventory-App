@@ -37,8 +37,49 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             title: Text('Erg Sign Out'),
             onTap: () {
-              Navigator.pop(context);
-              // Handle navigation to the Home page
+               showModalBottomSheet(
+                context: context,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+                ),
+                backgroundColor: Colors.white,
+                builder: (BuildContext context){
+                  return Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min, 
+                      children: [
+                        SizedBox(
+                          width: double.infinity,
+                        ),
+                        ElevatedButton(
+                          onPressed: () => Navigator.pop(context),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xffFFB81C),
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                          ),
+                          child: Text("Sign Out"),
+                        ),
+                        SizedBox(height: 12),
+                        SizedBox(height: 25),
+                        Image.asset("assets/ergdata_icon.png", height: 80,),
+                        SizedBox(height: 12),
+                        SizedBox(height: 25),
+                        ElevatedButton(
+                          onPressed: () => Navigator.pop(context),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xff003594),
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                          ),
+                          child: Text("Close"),
+                        )
+                      ],
+                    ),
+                  );
+                }
+              );
             },
           ),
           ListTile(
